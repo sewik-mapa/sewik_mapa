@@ -1,0 +1,54 @@
+{
+  "total_accidents": 2980482,
+  "total_files": 112,
+  "years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "voivodeships": {
+    "DOLNOŚLĄSKIE": 2,
+    "KUJAWSKO-POMORSKIE": 4,
+    "LUBELSKIE": 6,
+    "LUBUSKIE": 8,
+    "ŁÓDZKIE": 10,
+    "MAŁOPOLSKIE": 12,
+    "MAZOWIECKIE": 14,
+    "OPOLSKIE": 16,
+    "PODKARPACKIE": 18,
+    "PODLASKIE": 20,
+    "POMORSKIE": 22,
+    "ŚLĄSKIE": 24,
+    "ŚWIĘTOKRZYSKIE": 26,
+    "WARMIŃSKO-MAZURSKIE": 28,
+    "WIELKOPOLSKIE": 30,
+    "ZACHODNIOPOMORSKIE": 32
+  },
+  "date_range": {
+    "min_year": 2018,
+    "max_year": 2024
+  },
+  "coordinates_range": {
+    "lon": [
+      1.549226,
+      200815059.0
+    ],
+    "lat": [
+      1.305556,
+      53495494.0
+    ]
+  },
+  "severity_counts": {
+    "0": 2808502,
+    "1": 104191,
+    "2": 52898,
+    "3": 14891
+  },
+  "generated_at": "2025-09-22T21:57:06.009223",
+  "format": "GeoJSON",
+  "structure": "year_voivodeship"
+}

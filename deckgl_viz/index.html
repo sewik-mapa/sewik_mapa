@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Road Accidents Visualization - Poland</title>
+  <style>
+    body {
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Helvetica', 'Arial', sans-serif;
+    }
+    
+    #map {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .control-panel {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 350px;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.95);
+      border-right: 2px solid #ddd;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+      z-index: 1000;
+      overflow-y: auto;
+      transition: transform 0.3s ease-in-out;
+      transform: translateX(0);
+    }
+    
+    .control-panel.hidden {
+      transform: translateX(-100%);
+    }
+    
+    .control-panel-content {
+      padding: 0; /* Remove padding from main container */
+    }
+    
+    /* Sticky title */
+    .sticky-title {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.98);
+      padding: 20px 20px 15px 20px;
+      margin: 0;
+      font-size: 16px;
+      color: #333;
+      border-bottom: 2px solid #ddd;
+      z-index: 10;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Content below title */
+    .control-content {
+      padding: 20px;
+    }
+    
+    .toggle-button {
+      position: fixed;
+      top: 20px;
+      left: 360px;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 2px solid #ddd;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: left 0.3s ease-in-out;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+    }
+    
+    .toggle-button.panel-hidden {
+      left: 10px;
+    }
+    
+    .control-panel h3 {
+      margin: 0 0 15px 0;
+      font-size: 16px;
+      color: #333;
+    }
+    
+    .control-group {
+      margin-bottom: 15px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #555;
+    }
+    
+    select, input[type="range"] {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 5px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+    
+    .year-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .voivodeship-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .selection-button {
+      padding: 8px 4px;
+      border: 2px solid #ddd;
+      background: white;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 11px;
+      text-align: center;
+      transition: all 0.2s;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .selection-button:hover {
+      border-color: #007bff;
+      background: #f0f8ff;
+    }
+    
+    .selection-button.selected {
+      background: #007bff;
+      color: white;
+      border-color: #0056b3;
+    }
+    
+    .clear-button {
+      padding: 4px 8px;
+      background: #6c757d;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 10px;
+      margin-left: 5px;
+    }
+    
+    .clear-button:hover {
+      background: #5a6268;
+    }
+    
+    .show-button {
+      padding: 4px 8px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 10px;
+      margin-left: 5px;
+    }
+    
+    .show-button:hover {
+      background: #0056b3;
+    }
+    
+    .stats {
+      font-size: 12px;
+      color: #666;
+      margin-top: 10px;
+    }
+    
+    .legend {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #eee;
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+      font-size: 12px;
+    }
+    
+    .legend-color {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+    
+    .loading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 8px;
+      z-index: 2000;
+    }
+    
+    .map-attribution {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      color: #666;
+      z-index: 1000;
+      max-width: 300px;
+      line-height: 1.3;
+    }
+    
+    .map-attribution a {
+      color: #666;
+      text-decoration: none;
+    }
+    
+    .map-attribution a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Floating polygon button */
+    .floating-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: rgba(33, 150, 243, 0.9);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .floating-button:hover {
+      background: rgba(33, 150, 243, 1);
+      transform: scale(1.1);
+    }
+    
+    /* Analysis panel */
+    .analysis-panel {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      width: 320px;
+      max-height: 70vh;
+      background: rgba(255, 255, 255, 0.95);
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      overflow-y: auto;
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+    
+    .analysis-panel.hidden {
+      transform: translateX(100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .analysis-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px 10px 20px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .analysis-header h4 {
+      margin: 0;
+      font-size: 16px;
+      color: #333;
+    }
+    
+    .close-button {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: #666;
+      padding: 0;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .close-button:hover {
+      color: #000;
+    }
+    
+    .analysis-content {
+      padding: 15px 20px 20px 20px;
+    }
+    
+    .analysis-controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .analysis-button {
+      flex: 1;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: bold;
+      transition: all 0.2s;
+    }
+    
+    .analysis-button {
+      background: #2196F3;
+      color: white;
+    }
+    
+    .analysis-button:hover {
+      background: #1976D2;
+    }
+    
+    .analysis-button.secondary {
+      background: #757575;
+    }
+    
+    .analysis-button.secondary:hover {
+      background: #616161;
+    }
+    
+    .analysis-button.danger {
+      background: #f44336;
+    }
+    
+    .analysis-button.danger:hover {
+      background: #d32f2f;
+    }
+    
+    .analysis-results {
+      font-size: 12px;
+    }
+    
+    .results-table h5 {
+      margin: 0 0 10px 0;
+      font-size: 14px;
+      color: #333;
+    }
+    
+    .results-table h6 {
+      margin: 15px 0 8px 0;
+      font-size: 12px;
+      color: #555;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 3px;
+    }
+    
+    .result-item {
+      margin-bottom: 8px;
+      padding: 5px 0;
+    }
+    
+    .severity-table, .year-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 10px;
+      font-size: 11px;
+    }
+    
+    .severity-table td, .year-table td {
+      padding: 4px 8px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .severity-table td:first-child, .year-table td:first-child {
+      font-weight: bold;
+    }
+    
+    .severity-table td:last-child, .year-table td:last-child {
+      text-align: right;
+      color: #666;
+      font-size: 10px;
+    }
+    
+    .severity-table td:nth-child(2), .year-table td:nth-child(2) {
+      text-align: right;
+      font-weight: bold;
+    }
+    
+    #no-polygon-message {
+      color: #666;
+      font-style: italic;
+      text-align: center;
+      padding: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  
+  <div class="toggle-button" id="toggle-button" onclick="app.toggleControlPanel()">
+    ☰
+  </div>
+  
+  <div class="control-panel" id="control-panel">
+    <div class="control-panel-content">
+      <h3 id="title" class="sticky-title">Wypadki drogowe w Polsce</h3>
+      
+      <div class="control-content">
+        <div class="control-group">
+          <label for="language-select" id="language-label">Language / Język:</label>
+          <select id="language-select">
+            <option value="pl">Polski</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+        
+        <div class="control-group">
+          <label for="map-style-select" id="map-style-label">Map Style:</label>
+          <select id="map-style-select">
+            <option value="openstreetmap">OpenStreetMap</option>
+          </select>
+        </div>
+        
+        <div class="control-group">
+          <label id="years-label">
+            Years:
+            <button class="show-button" onclick="app.showAllYears()" id="show-all-years">Show All</button>
+            <button class="clear-button" onclick="app.clearYearSelection()" id="clear-all-years">Clear All</button>
+          </label>
+          <div class="button-grid year-grid" id="year-buttons">
+            <!-- Year buttons will be populated here -->
+          </div>
+        </div>
+        
+        <div class="control-group">
+          <label id="voivodeships-label">
+            Voivodeships:
+            <!-- <button class="show-button" onclick="app.showAllVoivodeships()" id="show-all-voivodeships">Show All</button> -->
+            <button class="clear-button" onclick="app.clearVoivodeshipSelection()" id="clear-all-voivodeships">Clear All</button>
+          </label>
+          <div class="button-grid voivodeship-grid" id="voivodeship-buttons">
+            <!-- Voivodeship buttons will be populated here -->
+          </div>
+        </div>
+        
+        <br>
+        <div class="control-group">
+          <label id="severity-controls-label">Severity Controls:</label>
+          <div id="severity-controls">
+            <!-- Severity controls will be populated here -->
+          </div>
+        </div>
+        <div id="participant-controls">
+          <!-- participant controls will be populated here -->
+        </div>
+        <div class="control-group">
+          <label for="radius-slider" id="radius-label">Point Size:</label>
+          <input type="range" id="radius-slider" min="1" max="100" value="10" step="0.05s">
+        </div>
+        
+        <div class="control-group">
+          <label for="opacity-slider" id="opacity-label">Opacity:</label>
+          <input type="range" id="opacity-slider" min="0.1" max="1" step="0.1" value="0.6">
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+  <div class="map-attribution" id="map-attribution">
+    © OpenStreetMap contributors
+  </div>
+  
+  <div class="loading" id="loading" style="display: none;">
+    <span id="loading-text">Loading data...</span>
+  </div>
+
+  <script src="https://unpkg.com/deck.gl@latest/dist.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
