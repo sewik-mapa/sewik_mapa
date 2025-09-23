@@ -161,7 +161,7 @@ class AccidentVisualization {
         allVisible: 'Wszystkie widoczne',
         allHidden: 'Wszystkie ukryte',
         downloadSelected: 'Pobierz wybrane',
-        vehicleFilters: 'Filtr użytkowników:',
+        vehicleFilters: 'Filtr uczestników:',
         pedestrian: 'Pieszy',
         motorcycle: 'Motocyklista',
         bicycle: 'Rowerzysta',
