@@ -1,5 +1,5 @@
 {
-  "total_accidents": 2980482,
+  "total_accidents": 2980467,
   "total_files": 112,
   "years": [
     2018,
@@ -35,7 +35,7 @@
   "coordinates_range": {
     "lon": [
       1.549226,
-      200815059.0
+      20374865.0
     ],
     "lat": [
       1.305556,
@@ -43,12 +43,12 @@
     ]
   },
   "severity_counts": {
-    "0": 2808502,
+    "0": 2808487,
     "1": 104191,
     "2": 52898,
     "3": 14891
   },
-  "generated_at": "2025-09-22T21:57:06.009223",
+  "generated_at": "2025-10-03T07:56:42.136713",
   "format": "GeoJSON",
   "structure": "year_voivodeship"
 }

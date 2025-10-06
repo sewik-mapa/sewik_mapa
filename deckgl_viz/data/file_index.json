@@ -15,9 +15,9 @@
     "filename": "accidents_2018_KUJAWSKO-POMORSKIE.geojson",
     "year": 2018,
     "voivodeship": "KUJAWSKO-POMORSKIE",
-    "accident_count": 28728,
+    "accident_count": 28725,
     "severity_distribution": {
-      "0": 27758,
+      "0": 27755,
       "1": 470,
       "2": 345,
       "3": 155
@@ -39,9 +39,9 @@
     "filename": "accidents_2018_LUBUSKIE.geojson",
     "year": 2018,
     "voivodeship": "LUBUSKIE",
-    "accident_count": 12123,
+    "accident_count": 12122,
     "severity_distribution": {
-      "0": 11460,
+      "0": 11459,
       "2": 321,
       "1": 270,
       "3": 72
@@ -63,9 +63,9 @@
     "filename": "accidents_2018_MAŁOPOLSKIE.geojson",
     "year": 2018,
     "voivodeship": "MAŁOPOLSKIE",
-    "accident_count": 34743,
+    "accident_count": 34742,
     "severity_distribution": {
-      "0": 31344,
+      "0": 31343,
       "1": 2177,
       "2": 1017,
       "3": 205
@@ -207,9 +207,9 @@
     "filename": "accidents_2019_KUJAWSKO-POMORSKIE.geojson",
     "year": 2019,
     "voivodeship": "KUJAWSKO-POMORSKIE",
-    "accident_count": 29401,
+    "accident_count": 29400,
     "severity_distribution": {
-      "0": 28461,
+      "0": 28460,
       "1": 417,
       "2": 333,
       "3": 190
@@ -231,9 +231,9 @@
     "filename": "accidents_2019_LUBUSKIE.geojson",
     "year": 2019,
     "voivodeship": "LUBUSKIE",
-    "accident_count": 12686,
+    "accident_count": 12685,
     "severity_distribution": {
-      "0": 12026,
+      "0": 12025,
       "2": 339,
       "1": 242,
       "3": 79
@@ -267,9 +267,9 @@
     "filename": "accidents_2019_MAZOWIECKIE.geojson",
     "year": 2019,
     "voivodeship": "MAZOWIECKIE",
-    "accident_count": 74059,
+    "accident_count": 74057,
     "severity_distribution": {
-      "0": 70261,
+      "0": 70259,
       "1": 2591,
       "2": 776,
       "3": 431
@@ -399,9 +399,9 @@
     "filename": "accidents_2020_KUJAWSKO-POMORSKIE.geojson",
     "year": 2020,
     "voivodeship": "KUJAWSKO-POMORSKIE",
-    "accident_count": 24849,
+    "accident_count": 24848,
     "severity_distribution": {
-      "0": 24022,
+      "0": 24021,
       "1": 400,
       "2": 300,
       "3": 127
@@ -627,9 +627,9 @@
     "filename": "accidents_2021_ŁÓDZKIE.geojson",
     "year": 2021,
     "voivodeship": "ŁÓDZKIE",
-    "accident_count": 30500,
+    "accident_count": 30499,
     "severity_distribution": {
-      "0": 28194,
+      "0": 28193,
       "1": 1308,
       "2": 825,
       "3": 173
@@ -651,9 +651,9 @@
     "filename": "accidents_2021_MAZOWIECKIE.geojson",
     "year": 2021,
     "voivodeship": "MAZOWIECKIE",
-    "accident_count": 66755,
+    "accident_count": 66754,
     "severity_distribution": {
-      "0": 63671,
+      "0": 63670,
       "1": 2165,
       "2": 574,
       "3": 345
@@ -807,9 +807,9 @@
     "filename": "accidents_2022_LUBUSKIE.geojson",
     "year": 2022,
     "voivodeship": "LUBUSKIE",
-    "accident_count": 10356,
+    "accident_count": 10355,
     "severity_distribution": {
-      "0": 9858,
+      "0": 9857,
       "1": 258,
       "2": 188,
       "3": 52
@@ -843,9 +843,9 @@
     "filename": "accidents_2022_MAZOWIECKIE.geojson",
     "year": 2022,
     "voivodeship": "MAZOWIECKIE",
-    "accident_count": 57743,
+    "accident_count": 57742,
     "severity_distribution": {
-      "0": 54847,
+      "0": 54846,
       "1": 2137,
       "2": 487,
       "3": 272
@@ -1035,9 +1035,9 @@
     "filename": "accidents_2023_MAZOWIECKIE.geojson",
     "year": 2023,
     "voivodeship": "MAZOWIECKIE",
-    "accident_count": 58434,
+    "accident_count": 58433,
     "severity_distribution": {
-      "0": 55640,
+      "0": 55639,
       "1": 2048,
       "2": 455,
       "3": 291

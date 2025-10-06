@@ -113,7 +113,7 @@ woj_mapping = {
 def convert_accidents_for_deckgl():
     """Convert SEWIK accidents data to deck.gl compatible GeoJSON format by year and voivodeship"""
     print("Loading accident data...")
-    df = pd.read_csv('csv/sewik_accidents_v3.csv', low_memory=False)
+    df = pd.read_csv('csv/sewik_accidents_v4.csv', low_memory=False)
     print(f"Loaded {len(df):,} accidents")
     
     # Filter out rows without valid coordinates and unrealistic coordinates
@@ -239,6 +239,8 @@ def convert_accidents_for_deckgl():
             filename = f"accidents_{int(year)}_{voivodeship}.geojson"
             filepath = os.path.join(output_dir, filename)
             
+            gdf = gdf.sort_values("sev")
+
             # Save as GeoJSON
             gdf.to_file(filepath, driver='GeoJSON')
             

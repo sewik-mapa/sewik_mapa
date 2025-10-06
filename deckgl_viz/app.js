@@ -22,6 +22,10 @@ class AccidentVisualization {
     // Current language
     this.currentLanguage = 'pl';
     
+    // Remove zoom-based sizing properties - we don't need them for constant pixel size
+    // this.currentZoomLevel = 7;
+    // this.baseMeters = 100;
+    
     // Severity visibility state
     this.severityVisibility = {
       'Fatal': true,
@@ -428,6 +432,15 @@ class AccidentVisualization {
     });
   }
 
+  // Simplified point radius calculation - just use slider value directly
+  calculatePointRadius() {
+    const radiusSlider = document.getElementById('radius-slider');
+    const pixelRadius = parseInt(radiusSlider?.value || '5');
+    
+    // Return the slider value directly for constant pixel size
+    return pixelRadius;
+  }
+
   handleViewStateChange({ viewState }) {
     console.log('View state changing:', viewState);
     console.log('Current lat:', viewState.latitude, 'lon:', viewState.longitude, 'zoom:', viewState.zoom);
@@ -440,6 +453,9 @@ class AccidentVisualization {
       bearing: viewState.bearing,
       pitch: viewState.pitch
     };
+    
+    // Remove zoom-based layer updates since we want constant pixel size
+    // No need to update layers on zoom change for constant pixel sizing
     
     console.log('Stored view state:', this.currentViewState);
     
@@ -509,7 +525,7 @@ class AccidentVisualization {
     const mapDependentBorderColor = currentStyle.mapDependentBorderColor;
     
     if (this.currentData && this.currentData.features.length > 0) {
-      const radius = parseInt(document.getElementById('radius-slider')?.value || '5');
+      const radius = this.calculatePointRadius(); // Use calculated radius instead of slider value
       const opacity = parseFloat(document.getElementById('opacity-slider')?.value || '0.6');
       
       // Filter features based on severity visibility and vehicle filters
@@ -559,24 +575,25 @@ class AccidentVisualization {
         pointType: 'circle',
         getPointRadius: radius,
         getFillColor: d => d.properties.c || [255, 0, 0, 160],
-        getLineColor: d => {
-          // Highlight selected feature with thick black border
-          const featureId = this.getFeatureId(d);
-          if (this.selectedFeatureId && featureId === this.selectedFeatureId) {
-            return mapDependentBorderColorSelected; // Selected border color
-          }
-          return mapDependentBorderColor; // Default border color
-        },
-        getLineWidth: d => {
-          // Thicker border for selected feature
-          const featureId = this.getFeatureId(d);
-          if (this.selectedFeatureId && featureId === this.selectedFeatureId) {
-            return 3; // Thick border for selected
-          }
-          return 1; // Default border width
-        },
-        lineWidthMinPixels: 1,
-        lineWidthMaxPixels: 3,
+        // getLineColor: d => {
+        //   // Highlight selected feature with thick black border
+        //   const featureId = this.getFeatureId(d);
+        //   if (this.selectedFeatureId && featureId === this.selectedFeatureId) {
+        //     return mapDependentBorderColorSelected; // Selected border color
+        //   }
+        //   return mapDependentBorderColor; // Default border color
+        // },
+        // getLineWidth: d => {
+        //   // Thicker border for selected feature
+        //   const featureId = this.getFeatureId(d);
+        //   if (this.selectedFeatureId && featureId === this.selectedFeatureId) {
+        //     return 3; // Thick border for selected
+        //   }
+        //   return 0; // Default border width
+        // },
+        radiusUnits: 'pixels',
+        lineWidthMinPixels: 0.1,
+        lineWidthMaxPixels: 1,
         opacity: opacity,
         pickable: true,
         autoHighlight: true,
@@ -706,6 +723,12 @@ class AccidentVisualization {
       };
       radiusSlider.addEventListener('input', updateRadius);
       radiusSlider.addEventListener('change', updateRadius);
+      
+      // Update label to reflect that this is now max pixel size
+      const radiusLabel = document.getElementById('radius-label');
+      if (radiusLabel) {
+        // Update will happen in updateLanguage() method
+      }
     }
     
     // Opacity slider - add both 'input' and 'change' events for real-time updates
@@ -1705,9 +1728,11 @@ createVehicleFilterControls(container) {
       `;
     }
     
-    // Update slider labels
+    // Update slider labels - modify radius label to indicate max pixel size
     const radiusLabel = document.getElementById('radius-label');
-    if (radiusLabel) radiusLabel.textContent = t.pointSize + ':';
+    if (radiusLabel) {
+      radiusLabel.textContent = (this.currentLanguage === 'pl' ? 'Maks. rozmiar (px):' : 'Max Size (px):');
+    }
     
     const opacityLabel = document.getElementById('opacity-label');
     if (opacityLabel) opacityLabel.textContent = t.opacity + ':';
@@ -1913,7 +1938,7 @@ createVehicleFilterControls(container) {
             ${t.viewInSewik} ↗
           </a>
         </div>
-      ` : ''}
+           ` : ''}
     `;
     
     document.body.appendChild(tooltip);
@@ -1958,6 +1983,7 @@ createVehicleFilterControls(container) {
     // Try multiple ways to determine severity
     // 1. Direct severity property
     if (props.severity) {
+     
       return props.severity;
     }
     
