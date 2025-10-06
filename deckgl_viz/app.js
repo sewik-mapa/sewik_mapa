@@ -92,6 +92,7 @@ class AccidentVisualization {
         yearsLabel: 'Years:',
         voivodeshipsLabel: 'Voivodeships:',
         showAll: 'Show All',
+        showAllWarning: '(not advised when collisions are shown)',
         clearAll: 'Clear All',
         pointSize: 'Point Size:',
         heatRadius: 'Heat Radius:',
@@ -169,6 +170,7 @@ class AccidentVisualization {
         yearsLabel: 'Lata:',
         voivodeshipsLabel: 'Województwa:',
         showAll: 'Pokaż Wszystkie',
+        showAllWarning: '(niezalecane przy kolizjach)',
         clearAll: 'Wyczyść wszystkie',
         pointSize: 'Rozmiar punktu:',
         heatRadius: 'Promień ciepła:',
@@ -1826,7 +1828,7 @@ createVehicleFilterControls(container) {
     if (voivodeshipsLabel) {
       voivodeshipsLabel.innerHTML = `
         ${t.voivodeshipsLabel}
-        <!-- <button class="show-button" onclick="app.showAllVoivodeships()" id="show-all-voivodeships">${t.showAll}</button> -->
+        <button class="show-button" onclick="app.showAllVoivodeships()" id="show-all-voivodeships">${t.showAll} ${t.showAllWarning}</button>
         <button class="clear-button" onclick="app.clearVoivodeshipSelection()" id="clear-all-voivodeships">${t.clearAll}</button>
         <div style="position: relative; display: inline-block; margin-left: 5px;">
           <button class="download-button" onclick="app.toggleDownloadMenu()" id="download-toggle" style="background: #2196F3; color: white; border: none; padding: 4px 8px; border-radius: 3px; cursor: pointer; font-size: 11px;">${t.downloadSelected} ▼</button>
