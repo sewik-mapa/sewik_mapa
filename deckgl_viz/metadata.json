@@ -1,6 +1,8 @@
 {
-  "total_accidents": 2980467,
-  "total_files": 112,
+  "total_events": 2980467,
+  "total_collisions": 2808487,
+  "total_accidents": 171980,
+  "total_files": 224,
   "years": [
     2018,
     2019,
@@ -48,7 +50,11 @@
     "2": 52898,
     "3": 14891
   },
-  "generated_at": "2025-10-03T07:56:42.136713",
+  "file_types": [
+    "collisions",
+    "accidents"
+  ],
+  "generated_at": "2025-10-06T23:09:11.656853",
   "format": "GeoJSON",
-  "structure": "year_voivodeship"
+  "structure": "year_voivodeship_type"
 }

@@ -63,24 +63,47 @@
     .toggle-button {
       position: fixed;
       top: 20px;
-      left: 360px;
-      width: 40px;
-      height: 40px;
-      background: rgba(255, 255, 255, 0.9);
+      left: 350px;
+      width: 30px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.95);
       border: 2px solid #ddd;
+      border-left: none;
       border-radius: 0 8px 8px 0;
       cursor: pointer;
       z-index: 1001;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
       transition: left 0.3s ease-in-out;
       box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
     }
     
     .toggle-button.panel-hidden {
-      left: 10px;
+      left: 0px;
+      border-left: 2px solid #ddd;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    .toggle-arrow {
+      width: 0;
+      height: 0;
+      border-style: solid;
+      transition: transform 0.3s ease-in-out;
+    }
+    
+    .toggle-arrow.panel-visible {
+      border-right: 8px solid #666;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-left: none;
+    }
+    
+    .toggle-arrow.panel-hidden {
+      border-left: 8px solid #666;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-right: none;
     }
     
     .control-panel h3 {
@@ -239,7 +262,130 @@
       text-decoration: underline;
     }
     
-    /* Floating polygon button */
+    /* Floating controls container */
+    .floating-controls {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 1001;
+    }
+    
+    /* Floating control buttons */
+    .floating-control-button {
+      min-width: 140px;
+      height: 40px;
+      background: rgba(33, 150, 243, 0.9);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      font-weight: bold;
+      padding: 0 12px;
+    }
+    
+    .floating-control-button:hover {
+      background: rgba(33, 150, 243, 1);
+      transform: scale(1.05);
+    }
+    
+    .floating-control-button.active {
+      background: rgba(25, 118, 210, 1);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    }
+    
+    /* Language selector */
+    .language-selector {
+      position: fixed;
+      bottom: 60px;
+      right: 10px;
+      display: flex;
+      gap: 3px;
+      z-index: 1001;
+    }
+    
+    .language-option {
+      width: 24px;
+      height: 24px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      transition: all 0.2s;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+    
+    .language-option:hover {
+      background: rgba(255, 255, 255, 1);
+      transform: scale(1.1);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    
+    .language-option.active {
+      background: rgba(33, 150, 243, 0.9);
+      border-color: #1976D2;
+      color: white;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    }
+    
+    /* Right panels */
+    .right-panel {
+      position: fixed;
+      top: 120px;
+      right: 20px;
+      width: 320px;
+      max-height: 70vh;
+      background: rgba(255, 255, 255, 0.95);
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      overflow-y: auto;
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      transform: translateX(100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .right-panel.visible {
+      transform: translateX(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px 10px 20px;
+      border-bottom: 1px solid #eee;
+      background: rgba(255, 255, 255, 0.98);
+      border-radius: 8px 8px 0 0;
+    }
+    
+    .panel-header h4 {
+      margin: 0;
+      font-size: 16px;
+      color: #333;
+    }
+    
+    .panel-content {
+      padding: 15px 20px 20px 20px;
+    }
+    
+    /* Floating polygon button (keep for backward compatibility) */
     .floating-button {
       position: fixed;
       top: 20px;
@@ -265,41 +411,7 @@
       transform: scale(1.1);
     }
     
-    /* Analysis panel */
-    .analysis-panel {
-      position: fixed;
-      top: 80px;
-      right: 20px;
-      width: 320px;
-      max-height: 70vh;
-      background: rgba(255, 255, 255, 0.95);
-      border: 2px solid #ddd;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      z-index: 1000;
-      overflow-y: auto;
-      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    }
-    
-    .analysis-panel.hidden {
-      transform: translateX(100%);
-      opacity: 0;
-      pointer-events: none;
-    }
-    
-    .analysis-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 20px 10px 20px;
-      border-bottom: 1px solid #eee;
-    }
-    
-    .analysis-header h4 {
-      margin: 0;
-      font-size: 16px;
-      color: #333;
-    }
+
     
     .close-button {
       background: none;
@@ -317,10 +429,6 @@
     
     .close-button:hover {
       color: #000;
-    }
-    
-    .analysis-content {
-      padding: 15px 20px 20px 20px;
     }
     
     .analysis-controls {
@@ -427,7 +535,7 @@
   <div id="map"></div>
   
   <div class="toggle-button" id="toggle-button" onclick="app.toggleControlPanel()">
-    ☰
+    <div class="toggle-arrow panel-visible" id="toggle-arrow"></div>
   </div>
   
   <div class="control-panel" id="control-panel">
@@ -435,21 +543,6 @@
       <h3 id="title" class="sticky-title">Wypadki drogowe w Polsce</h3>
       
       <div class="control-content">
-        <div class="control-group">
-          <label for="language-select" id="language-label">Language / Język:</label>
-          <select id="language-select">
-            <option value="pl">Polski</option>
-            <option value="en">English</option>
-          </select>
-        </div>
-        
-        <div class="control-group">
-          <label for="map-style-select" id="map-style-label">Map Style:</label>
-          <select id="map-style-select">
-            <option value="openstreetmap">OpenStreetMap</option>
-          </select>
-        </div>
-        
         <div class="control-group">
           <label id="years-label">
             Years:
@@ -482,18 +575,20 @@
         <div id="participant-controls">
           <!-- participant controls will be populated here -->
         </div>
-        <div class="control-group">
-          <label for="radius-slider" id="radius-label">Point Size:</label>
-          <input type="range" id="radius-slider" min="0.5" max="500" value="50" step="1">
-        </div>
-        
-        <div class="control-group">
-          <label for="opacity-slider" id="opacity-label">Opacity:</label>
-          <input type="range" id="opacity-slider" min="0.1" max="1" step="0.1" value="0.6">
-        </div>
+
         
       </div>
     </div>
+  </div>
+  
+  <!-- Language selector above attribution -->
+  <div class="language-selector" id="language-selector">
+    <button class="language-option" data-lang="pl" onclick="app.changeLanguage('pl')">
+      PL
+    </button>
+    <button class="language-option" data-lang="en" onclick="app.changeLanguage('en')">
+      EN
+    </button>
   </div>
   
   <div class="map-attribution" id="map-attribution">
@@ -503,6 +598,73 @@
   <div class="loading" id="loading" style="display: none;">
     <span id="loading-text">Loading data...</span>
   </div>
+  
+  <!-- Floating buttons for right-side panels -->
+  <div class="floating-controls">
+    <button class="floating-control-button" id="graphic-params-button" onclick="app.toggleGraphicParametersPanel()">
+      <span id="graphic-params-text">Graphic Parameters</span>
+    </button>
+    <button class="floating-control-button" id="analysis-button" onclick="app.toggleAnalysisPanel()">
+      <span id="analysis-text">Analysis</span>
+    </button>
+  </div>
+  
+  <!-- Graphic Parameters Panel -->
+  <div class="right-panel" id="graphic-parameters-panel">
+    <div class="panel-header">
+      <h4 id="graphic-parameters-title">Graphic Parameters</h4>
+      <button onclick="app.toggleGraphicParametersPanel()" class="close-button">×</button>
+    </div>
+    <div class="panel-content">
+      <div class="control-group">
+        <label for="map-style-select" id="map-style-label">Map Style:</label>
+        <select id="map-style-select">
+          <option value="openstreetmap">OpenStreetMap</option>
+        </select>
+      </div>
+      
+      <div class="control-group">
+        <label for="view-mode-select" id="view-mode-label">View Mode:</label>
+        <select id="view-mode-select">
+          <option value="points">Points</option>
+          <option value="heatmap">Heatmap</option>
+        </select>
+      </div>
+      
+      <div class="control-group">
+        <label for="radius-slider" id="radius-label">Point Size:</label>
+        <input type="range" id="radius-slider" min="0.5" max="100" value="5" step="0.5">
+      </div>
+      
+      <div class="control-group">
+        <label for="opacity-slider" id="opacity-label">Opacity:</label>
+        <input type="range" id="opacity-slider" min="0" max="0.95" step="0.01" value="0.5">
+      </div>
+    </div>
+  </div>
+  
+  <!-- Analysis Panel -->
+  <div class="right-panel" id="analysis-panel">
+    <div class="panel-header">
+      <h4 id="analysis-title">Area Analysis</h4>
+      <button onclick="app.toggleAnalysisPanel()" class="close-button">×</button>
+    </div>
+    <div class="panel-content">
+      <div class="analysis-controls">
+        <button id="draw-polygon-btn" onclick="app.toggleDrawingMode()" class="analysis-button">
+          <span id="draw-polygon-text">Start Drawing</span>
+        </button>
+        <button id="clear-polygons-btn" onclick="app.clearPolygons()" class="analysis-button secondary">
+          <span id="clear-polygons-text">Clear Polygons</span>
+        </button>
+      </div>
+      <div id="analysis-results" class="analysis-results">
+        <div id="no-polygon-message">No analysis polygon drawn</div>
+      </div>
+    </div>
+  </div>
+  
+
 
   <script src="https://unpkg.com/deck.gl@latest/dist.min.js"></script>
   <script src="app.js"></script>

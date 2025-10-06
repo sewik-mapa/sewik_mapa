@@ -221,6 +221,7 @@ def convert_accidents_for_deckgl():
     total_files = 0
     
     # Create GeoJSON for each year and voivodeship combination
+    # Separate collisions (sev=0) and accidents (sev>0)
     for year in years:
         year_data = viz_df[viz_df['yr'] == year]
         
@@ -228,31 +229,60 @@ def convert_accidents_for_deckgl():
             subset = year_data[year_data['WOJ'] == woj_mapping[voivodeship]]
             if len(subset) == 0:
                 continue
+            
+            # Split data into collisions and accidents
+            collisions = subset[subset['sev'] == 0]
+            accidents = subset[subset['sev'] > 0]
+            
+            # Process collisions (sev=0)
+            if len(collisions) > 0:
+                geometry_col = [Point(xy) for xy in zip(collisions['lon'], collisions['lat'])]
+                gdf_col = gpd.GeoDataFrame(
+                    collisions.drop(['lon', 'lat'], axis=1), 
+                    geometry=geometry_col, 
+                    crs='EPSG:4326')
                 
-            # Create GeoDataFrame with Point geometries
-            geometry = [Point(xy) for xy in zip(subset['lon'], subset['lat'])]
-            gdf = gpd.GeoDataFrame(
-                subset.drop(['lon', 'lat'], axis=1), 
-                geometry=geometry, 
-                crs='EPSG:4326')
+                filename_col = f"collisions_{int(year)}_{voivodeship}.geojson"
+                filepath_col = os.path.join(output_dir, filename_col)
+                
+                gdf_col = gdf_col.sort_values("sev", ascending=True)
+                gdf_col.to_file(filepath_col, driver='GeoJSON')
+                
+                file_info_col = {
+                    'filename': filename_col,
+                    'year': int(year),
+                    'voivodeship': voivodeship,
+                    'accident_count': len(collisions),
+                    'type': 'collisions',
+                    'severity_distribution': collisions['sev'].value_counts().to_dict()
+                }
+                file_index.append(file_info_col)
+                total_files += 1
             
-            filename = f"accidents_{int(year)}_{voivodeship}.geojson"
-            filepath = os.path.join(output_dir, filename)
-            
-            gdf = gdf.sort_values("sev")
-
-            # Save as GeoJSON
-            gdf.to_file(filepath, driver='GeoJSON')
-            
-            file_info = {
-                'filename': filename,
-                'year': int(year),
-                'voivodeship': voivodeship,
-                'accident_count': len(subset),
-                'severity_distribution': subset['sev'].value_counts().to_dict()
-            }
-            file_index.append(file_info)
-            total_files += 1
+            # Process accidents (sev>0)
+            if len(accidents) > 0:
+                geometry_acc = [Point(xy) for xy in zip(accidents['lon'], accidents['lat'])]
+                gdf_acc = gpd.GeoDataFrame(
+                    accidents.drop(['lon', 'lat'], axis=1), 
+                    geometry=geometry_acc, 
+                    crs='EPSG:4326')
+                
+                filename_acc = f"accidents_{int(year)}_{voivodeship}.geojson"
+                filepath_acc = os.path.join(output_dir, filename_acc)
+                
+                gdf_acc = gdf_acc.sort_values("sev", ascending=True)
+                gdf_acc.to_file(filepath_acc, driver='GeoJSON')
+                
+                file_info_acc = {
+                    'filename': filename_acc,
+                    'year': int(year),
+                    'voivodeship': voivodeship,
+                    'accident_count': len(accidents),
+                    'type': 'accidents',
+                    'severity_distribution': accidents['sev'].value_counts().to_dict()
+                }
+                file_index.append(file_info_acc)
+                total_files += 1
             
             if total_files % 50 == 0:
                 print(f"Created {total_files} files...")
@@ -263,8 +293,13 @@ def convert_accidents_for_deckgl():
         json.dump(file_index, f, ensure_ascii=False, indent=2)
     
     # Create metadata
+    collision_count = len(viz_df[viz_df['sev'] == 0])
+    accident_count = len(viz_df[viz_df['sev'] > 0])
+    
     metadata = {
-        'total_accidents': len(viz_df),
+        'total_events': len(viz_df),
+        'total_collisions': collision_count,
+        'total_accidents': accident_count,
         'total_files': total_files,
         'years': [int(y) for y in years],
         'voivodeships': woj_mapping,
@@ -277,9 +312,10 @@ def convert_accidents_for_deckgl():
             'lat': [float(viz_df['lat'].min()), float(viz_df['lat'].max())]
         },
         'severity_counts': viz_df['sev'].value_counts().to_dict(),
+        'file_types': ['collisions', 'accidents'],
         'generated_at': datetime.now().isoformat(),
         'format': 'GeoJSON',
-        'structure': 'year_voivodeship'
+        'structure': 'year_voivodeship_type'
     }
     
     metadata_file = 'deckgl_viz/metadata.json'
@@ -288,11 +324,18 @@ def convert_accidents_for_deckgl():
     
     print(f"\nConversion complete!")
     print(f"- Created {total_files} GeoJSON files in {output_dir}")
+    print(f"  - Collision files (sev=0): {len([f for f in file_index if f.get('type') == 'collisions'])}")
+    print(f"  - Accident files (sev>0): {len([f for f in file_index if f.get('type') == 'accidents'])}")
     print(f"- File index: {index_file}")
     print(f"- Metadata: {metadata_file}")
-    print(f"\nOverall severity distribution:")
-    for severity, count in viz_df['sev'].value_counts().items():
-        print(f"  {severity}: {count:,}")
+    print(f"\nOverall event distribution:")
+    print(f"  - Total collisions (sev=0): {collision_count:,}")
+    print(f"  - Total accidents (sev>0): {accident_count:,}")
+    print(f"  - Total events: {len(viz_df):,}")
+    print(f"\nSeverity breakdown:")
+    for severity, count in viz_df['sev'].value_counts().sort_index().items():
+        severity_name = {0: 'Collisions (damage only)', 1: 'Slight injuries', 2: 'Serious injuries', 3: 'Fatal'}
+        print(f"  {severity_name.get(severity, f'Severity {severity}')}: {count:,}")
     print(f"\nYears: {min(years)} - {max(years)}")
     print(f"Voivodeships: {len(voivodeships)}")
 

@@ -1,4 +1,4 @@
-const { DeckGL, GeoJsonLayer, TileLayer, BitmapLayer, PolygonLayer } = deck;
+const { DeckGL, GeoJsonLayer, TileLayer, BitmapLayer, PolygonLayer, HeatmapLayer} = deck;
 
 class AccidentVisualization {
   constructor() {
@@ -43,15 +43,45 @@ class AccidentVisualization {
       uwr: false
     };
     
+    this.zoomDependentScaling = {
+      1: 73,
+      2: 61,
+      3: 60,
+      4: 50,
+      5: 41,
+      6: 33,
+      7: 26,
+      8: 19,
+      9: 13,
+      10: 8,
+      11: 4,
+      12: 2,
+      13: 1,
+      14: 0.5,
+      15: 0.25,
+      16: 0.1,
+      17: 0.05,
+      18: 0.025
+    }
+
     // Pie filter state
     this.pieFilterEnabled = false;
+    
+    // View mode state
+    this.viewMode = 'points'; // 'points' or 'heatmap'
+    
+    // Data type selector state
+    this.dataType = 'both'; // 'collisions', 'accidents', or 'both'
+    
+    // Panel visibility states
+    this.graphicParametersVisible = false;
+    this.analysisVisible = false;
     
     // Polygon analysis state
     this.analysisPolygons = [];
     this.isDrawingMode = false;
     this.currentDrawingPolygon = null;
     this.analysisResults = null;
-    this.analysisVisible = false;
 
     // Translations
     this.translations = {
@@ -64,7 +94,15 @@ class AccidentVisualization {
         showAll: 'Show All',
         clearAll: 'Clear All',
         pointSize: 'Point Size:',
-        opacity: 'Opacity:',
+        heatRadius: 'Heat Radius:',
+        opacity: 'Opacity',
+        viewMode: 'View Mode:',
+        pointsView: 'Points',
+        heatmapView: 'Heatmap',
+        dataType: 'Data Type:',
+        collisionsOnly: 'Collisions Only',
+        accidentsOnly: 'Accidents Only',
+        bothTypes: 'Both',
         noDataLoaded: 'No data loaded',
         selection: 'Selection:',
         years: 'Years:',
@@ -99,12 +137,15 @@ class AccidentVisualization {
         allVisible: 'All Visible',
         allHidden: 'All Hidden',
         downloadSelected: 'Download selected',
+        downloadSeparate: 'Download as separate files',
+        downloadCombined: 'Download as one file',
         vehicleFilters: 'Vehicle Type Filters:',
         pedestrian: 'Pedestrian',
         motorcycle: 'Motorcycle',
         bicycle: 'Bicycle',
         uto: 'E-scooters etc.',
         uwr: 'Human powered street vehicles',
+        graphicParameters: 'Graphic Parameters',
         areaAnalysis: 'Area Analysis',
         drawPolygon: 'Draw Analysis Polygon',
         clearPolygons: 'Clear Polygons',
@@ -130,7 +171,15 @@ class AccidentVisualization {
         showAll: 'Pokaż Wszystkie',
         clearAll: 'Wyczyść wszystkie',
         pointSize: 'Rozmiar punktu:',
-        opacity: 'Przezroczystość:',
+        heatRadius: 'Promień ciepła:',
+        opacity: 'Przezroczystość',
+        viewMode: 'Tryb widoku:',
+        pointsView: 'Punkty',
+        heatmapView: 'Mapa cieplna',
+        dataType: 'Typ danych:',
+        collisionsOnly: 'Tylko kolizje',
+        accidentsOnly: 'Tylko wypadki',
+        bothTypes: 'Oba typy',
         noDataLoaded: 'Brak załadowanych danych',
         selection: 'Wybór:',
         years: 'Lata',
@@ -165,12 +214,15 @@ class AccidentVisualization {
         allVisible: 'Wszystkie widoczne',
         allHidden: 'Wszystkie ukryte',
         downloadSelected: 'Pobierz wybrane',
+        downloadSeparate: 'Pobierz jako osobne pliki',
+        downloadCombined: 'Pobierz jako jeden plik',
         vehicleFilters: 'Filtr uczestników:',
         pedestrian: 'Pieszy',
         motorcycle: 'Motocyklista',
         bicycle: 'Rowerzysta',
         uto: 'Użytkownik UTO',
         uwr: 'Użytkownik UWR',
+        graphicParameters: 'Parametry graficzne',
         areaAnalysis: 'Analiza obszaru',
         drawPolygon: 'Narysuj obszar analizy',
         clearPolygons: 'Wyczyść',
@@ -252,6 +304,10 @@ class AccidentVisualization {
     this.isInitializing = true; // Prevent URL updates during initialization
     this.updateUrlTimeout = null; // Debounce URL updates
     this.currentViewState = null; // Store current view state
+    
+    // Add zoom tracking properties
+    this.zoomTimeout = null;
+    this.isZooming = false;
     
     this.init();
   }
@@ -454,8 +510,20 @@ class AccidentVisualization {
       pitch: viewState.pitch
     };
     
-    // Remove zoom-based layer updates since we want constant pixel size
-    // No need to update layers on zoom change for constant pixel sizing
+    // Detect zoom changes and refresh layers when zoom ends
+    this.isZooming = true;
+    
+    // Clear existing timeout
+    if (this.zoomTimeout) {
+      clearTimeout(this.zoomTimeout);
+    }
+    
+    // Set timeout to detect zoom end
+    this.zoomTimeout = setTimeout(() => {
+      console.log('Zoom ended, refreshing layers...');
+      this.isZooming = false;
+      this.updateLayers(); // Refresh layers when zoom ends
+    }, 150); // 150ms delay to detect end of zoom
     
     console.log('Stored view state:', this.currentViewState);
     
@@ -525,7 +593,7 @@ class AccidentVisualization {
     const mapDependentBorderColor = currentStyle.mapDependentBorderColor;
     
     if (this.currentData && this.currentData.features.length > 0) {
-      const radius = this.calculatePointRadius(); // Use calculated radius instead of slider value
+      const radius = parseFloat(document.getElementById('radius-slider')?.value || '5') * this.zoomDependentScaling[Math.round(this.currentViewState.zoom)];
       const opacity = parseFloat(document.getElementById('opacity-slider')?.value || '0.6');
       
       // Filter features based on severity visibility and vehicle filters
@@ -569,76 +637,66 @@ class AccidentVisualization {
         features: visibleFeatures
       };
       
-      const accidentLayer = new GeoJsonLayer({
-        id: 'accidents',
-        data: filteredData,
-        pointType: 'circle',
-        getPointRadius: radius,
-        getFillColor: d => d.properties.c || [255, 0, 0, 160],
-        // getLineColor: d => {
-        //   // Highlight selected feature with thick black border
-        //   const featureId = this.getFeatureId(d);
-        //   if (this.selectedFeatureId && featureId === this.selectedFeatureId) {
-        //     return mapDependentBorderColorSelected; // Selected border color
-        //   }
-        //   return mapDependentBorderColor; // Default border color
-        // },
-        // getLineWidth: d => {
-        //   // Thicker border for selected feature
-        //   const featureId = this.getFeatureId(d);
-        //   if (this.selectedFeatureId && featureId === this.selectedFeatureId) {
-        //     return 3; // Thick border for selected
-        //   }
-        //   return 0; // Default border width
-        // },
-        radiusUnits: 'pixels',
-        lineWidthMinPixels: 0.1,
-        lineWidthMaxPixels: 1,
-        opacity: opacity,
-        pickable: true,
-        autoHighlight: true,
-        highlightColor: [255, 255, 255, 200]
-      });
-      
-      layers.push(accidentLayer);
+      if (this.viewMode === 'points') {
+        const accidentLayer = new GeoJsonLayer({
+          id: 'accidents',
+          data: filteredData,
+          pointType: 'circle',
+          getPointRadius: d => ((d.properties.sev + 1)/2) * radius,
+          getFillColor: d => d.properties.c || [255, 0, 0, 160],
+          // getLineColor: d => {
+          //   // Highlight selected feature with thick black border
+          //   const featureId = this.getFeatureId(d);
+          //   if (this.selectedFeatureId && featureId === this.selectedFeatureId) {
+          //     return mapDependentBorderColorSelected; // Selected border color
+          //   }
+          //   return mapDependentBorderColor; // Default border color
+          // },
+          // getLineWidth: d => {
+          //   // Thicker border for selected feature
+          //   const featureId = this.getFeatureId(d);
+          //   if (this.selectedFeatureId && featureId === this.selectedFeatureId) {
+          //     return 3; // Thick border for selected
+          //   }
+          //   return 0; // Default border width
+          // },
+          radiusUnits: 'pixels',
+          lineWidthMinPixels: 0.5,
+          lineWidthMaxPixels: 1,
+          opacity: 1 - opacity,
+          pickable: true,
+          autoHighlight: true,
+          highlightColor: [255, 255, 255, 200]
+        });
+        
+        layers.push(accidentLayer);
+      } else if (this.viewMode === 'heatmap') {
+        console.log('Creating heatmap layer with', visibleFeatures.length, 'features');
+        const heatmapRadius = parseFloat(document.getElementById('radius-slider')?.value || '25');
+        const accidentHeatmapLayer = new HeatmapLayer({
+          id: 'accidents-heatmap',
+          data: visibleFeatures,
+          getPosition: d => d.geometry.coordinates,
+          getWeight: d => (d.properties.sev * d.properties.sev) + 1,
+          radiusPixels: heatmapRadius,
+          intensity: 1,
+          threshold: 0.01,
+          opacity: 1-opacity,
+          colorRange: [
+            [255, 255, 178, 50],
+            [254, 204, 92, 100],
+            [253, 141, 60, 150],
+            [240, 59, 32, 200],
+            [189, 0, 38, 240],
+            [128, 0, 38, 255]
+          ]
+        });
+        
+        console.log('Created heatmap layer:', accidentHeatmapLayer);
+        layers.push(accidentHeatmapLayer);
+      }
     }
     // Add polygon layers
-    if (this.analysisPolygons.length > 0) {
-      const polygonLayer = new PolygonLayer({
-        id: 'analysis-polygons',
-        data: this.analysisPolygons.map(polygon => ({
-          polygon: polygon.coordinates[0]
-        })),
-        getPolygon: d => d.polygon,
-        getFillColor: [0, 150, 255, 50],
-        getLineColor: [0, 100, 200, 255],
-        getLineWidth: 2,
-        lineWidthMinPixels: 2,
-        pickable: false
-      });
-      layers.push(polygonLayer);
-    }
-    
-    // Add current drawing polygon
-    if (this.currentDrawingPolygon && this.currentDrawingPolygon.length > 0) {
-      const drawingData = [{
-        polygon: this.currentDrawingPolygon.length >= 3 ? 
-          [...this.currentDrawingPolygon, this.currentDrawingPolygon[0]] : 
-          this.currentDrawingPolygon
-      }];
-      
-      const drawingLayer = new PolygonLayer({
-        id: 'drawing-polygon',
-        data: drawingData,
-        getPolygon: d => d.polygon,
-        getFillColor: [255, 0, 0, 30],
-        getLineColor: [255, 0, 0, 200],
-        getLineWidth: 2,
-        lineWidthMinPixels: 2,
-        pickable: false
-      });
-      layers.push(drawingLayer);
-    }    // Add polygon layers
     if (this.analysisPolygons.length > 0) {
       const polygonLayer = new PolygonLayer({
         id: 'analysis-polygons',
@@ -690,18 +748,11 @@ class AccidentVisualization {
     // Populate map style dropdown
     this.updateMapStyleDropdown();
     
-    // Create area analysis controls
-    this.createAreaAnalysisControls();
+    // Setup polygon drawing functionality
+    this.setupPolygonDrawing();
         
-    // Add event listeners with null checks
-    const languageSelect = document.getElementById('language-select');
-    if (languageSelect) {
-      languageSelect.addEventListener('change', (e) => {
-        this.currentLanguage = e.target.value;
-        this.updateLanguage();
-        this.updateUrlParameters();
-      });
-    }
+    // Initialize language selector
+    this.updateLanguageSelector();
     
     const mapStyleSelect = document.getElementById('map-style-select');
     if (mapStyleSelect) {
@@ -711,6 +762,24 @@ class AccidentVisualization {
         this.updateBodyColor();
         this.updateUrlParameters();
         this.updateLayers();
+      });
+    }
+    
+    // View mode select
+    const viewModeSelect = document.getElementById('view-mode-select');
+    if (viewModeSelect) {
+      viewModeSelect.addEventListener('change', (e) => {
+        this.viewMode = e.target.value;
+        this.updateUrlParameters();
+        this.updateLayers();
+        
+        // Update the radius label based on view mode
+        this.updateRadiusLabel();
+        
+        // Hide persistent tooltip when switching view modes as heatmap doesn't support tooltips
+        if (this.viewMode === 'heatmap') {
+          this.hidePersistentTooltip();
+        }
       });
     }
     
@@ -916,44 +985,21 @@ createVehicleFilterControls(container) {
     container.appendChild(separator);
   }
   
-  createAreaAnalysisControls() {
-    // Create floating polygon button
-    const polygonButton = document.createElement('div');
-    polygonButton.id = 'polygon-button';
-    polygonButton.className = 'floating-button';
-    polygonButton.innerHTML = '⬟';
-    polygonButton.title = 'Area Analysis Tool';
-    polygonButton.onclick = () => this.toggleDrawingMode();
+  toggleGraphicParametersPanel() {
+    this.graphicParametersVisible = !this.graphicParametersVisible;
+    const panel = document.getElementById('graphic-parameters-panel');
+    const button = document.getElementById('graphic-params-button');
     
-    // Create analysis panel
-    const analysisPanel = document.createElement('div');
-    analysisPanel.id = 'analysis-panel';
-    analysisPanel.className = 'analysis-panel hidden';
-    analysisPanel.innerHTML = `
-      <div class="analysis-header">
-        <h4 id="analysis-title">Area Analysis</h4>
-        <button onclick="app.toggleAnalysisPanel()" class="close-button">×</button>
-      </div>
-      <div class="analysis-content">
-        <div class="analysis-controls">
-          <button id="draw-polygon-btn" onclick="app.toggleDrawingMode()" class="analysis-button">
-            <span id="draw-polygon-text">Start Drawing</span>
-          </button>
-          <button id="clear-polygons-btn" onclick="app.clearPolygons()" class="analysis-button secondary">
-            <span id="clear-polygons-text">Clear Polygons</span>
-          </button>
-        </div>
-        <div id="analysis-results" class="analysis-results">
-          <div id="no-polygon-message">No analysis polygon drawn</div>
-        </div>
-      </div>
-    `;
-    
-    document.body.appendChild(polygonButton);
-    document.body.appendChild(analysisPanel);
-    
-    // Add click handler for map to handle polygon drawing
-    this.setupPolygonDrawing();
+    if (panel && button) {
+      if (this.graphicParametersVisible) {
+        panel.classList.add('visible');
+        button.classList.add('active');
+      } else {
+        panel.classList.remove('visible');
+        button.classList.remove('active');
+      }
+    }
+    this.updateUrlParameters();
   }
   
   setupPolygonDrawing() {
@@ -985,8 +1031,9 @@ createVehicleFilterControls(container) {
     this.isDrawingMode = true;
     
     // Show analysis panel
-    this.analysisVisible = true;
-    this.updateAnalysisPanel();
+    if (!this.analysisVisible) {
+      this.toggleAnalysisPanel();
+    }
     
     // Change cursor
     document.getElementById('map').style.cursor = 'crosshair';
@@ -1037,7 +1084,41 @@ createVehicleFilterControls(container) {
   
   toggleAnalysisPanel() {
     this.analysisVisible = !this.analysisVisible;
-    this.updateAnalysisPanel();
+    const panel = document.getElementById('analysis-panel');
+    const button = document.getElementById('analysis-button');
+    
+    if (panel && button) {
+      if (this.analysisVisible) {
+        panel.classList.add('visible');
+        button.classList.add('active');
+      } else {
+        panel.classList.remove('visible');
+        button.classList.remove('active');
+      }
+    }
+    this.updateUrlParameters();
+  }
+  
+  changeLanguage(lang) {
+    if (this.translations[lang]) {
+      this.currentLanguage = lang;
+      this.updateLanguage();
+      this.updateUrlParameters();
+      this.updateLanguageSelector();
+    }
+  }
+  
+  updateLanguageSelector() {
+    // Update active state of language options
+    const options = document.querySelectorAll('.language-option');
+    options.forEach(option => {
+      const langCode = option.getAttribute('data-lang');
+      if (langCode === this.currentLanguage) {
+        option.classList.add('active');
+      } else {
+        option.classList.remove('active');
+      }
+    });
   }
   
   updateDrawingUI() {
@@ -1056,16 +1137,7 @@ createVehicleFilterControls(container) {
     }
   }
   
-  updateAnalysisPanel() {
-    const panel = document.getElementById('analysis-panel');
-    if (panel) {
-      if (this.analysisVisible) {
-        panel.classList.remove('hidden');
-      } else {
-        panel.classList.add('hidden');
-      }
-    }
-  }
+
   
   analyzePolygonArea(polygon) {
     if (!this.currentData || !this.currentData.features) {
@@ -1280,7 +1352,7 @@ createVehicleFilterControls(container) {
         visibleFeatures.forEach(feature => {
           const [lon, lat] = feature.geometry.coordinates;
           if (this.isPointInPolygon([lon, lat], polygon.coordinates[0])) {
-            const year = feature.properties.yr || 'Unknown';
+            const year = feature.properties.yr || feature.properties.year;
             const severity = this.getSeverityFromFeature(feature);
             
             if (yearSeverityBreakdown[year]) {
@@ -1514,20 +1586,23 @@ createVehicleFilterControls(container) {
     this.controlPanelVisible = !this.controlPanelVisible;
     const panel = document.getElementById('control-panel');
     const toggleButton = document.getElementById('toggle-button');
+    const toggleArrow = document.getElementById('toggle-arrow');
     
-    if (!panel || !toggleButton) {
-      console.warn('Control panel or toggle button not found');
+    if (!panel || !toggleButton || !toggleArrow) {
+      console.warn('Control panel, toggle button, or arrow not found');
       return;
     }
     
     if (this.controlPanelVisible) {
       panel.classList.remove('hidden');
       toggleButton.classList.remove('panel-hidden');
-      toggleButton.innerHTML = '☰';
+      toggleArrow.classList.remove('panel-hidden');
+      toggleArrow.classList.add('panel-visible');
     } else {
       panel.classList.add('hidden');
       toggleButton.classList.add('panel-hidden');
-      toggleButton.innerHTML = '→';
+      toggleArrow.classList.remove('panel-visible');
+      toggleArrow.classList.add('panel-hidden');
     }
     
     // Update URL to reflect panel state
@@ -1555,24 +1630,42 @@ createVehicleFilterControls(container) {
         return;
       }
       
-      // Generate files to load
+      // Generate files to load - now includes both collision and accident files
       let filesToLoad = [];
       
       if (this.fileIndex && this.fileIndex.length > 0) {
         filesToLoad = this.fileIndex.filter(file => 
           selectedYears.includes(file.year) && 
-          selectedVoivodeships.includes(file.voivodeship)
+          selectedVoivodeships.includes(file.voivodeship) &&
+          (this.dataType === 'both' || 
+           (this.dataType === 'collisions' && file.type === 'collisions') ||
+           (this.dataType === 'accidents' && file.type === 'accidents'))
         );
       } else {
-        // Generate expected filenames
+        // Generate expected filenames based on selected data type
         for (const voivodeship of selectedVoivodeships) {
           for (const year of selectedYears) {
-            const filename = `accidents_${year}_${voivodeship}.geojson`;
-            filesToLoad.push({
-              filename: filename,
-              year: year,
-              voivodeship: voivodeship
-            });
+            if (this.dataType === 'collisions' || this.dataType === 'both') {
+              // Add collision file (sev=0)
+              const collisionFilename = `collisions_${year}_${voivodeship}.geojson`;
+              filesToLoad.push({
+                filename: collisionFilename,
+                year: year,
+                voivodeship: voivodeship,
+                type: 'collisions'
+              });
+            }
+            
+            if (this.dataType === 'accidents' || this.dataType === 'both') {
+              // Add accident file (sev>0)
+              const accidentFilename = `accidents_${year}_${voivodeship}.geojson`;
+              filesToLoad.push({
+                filename: accidentFilename,
+                year: year,
+                voivodeship: voivodeship,
+                type: 'accidents'
+              });
+            }
           }
         }
       }
@@ -1591,7 +1684,13 @@ createVehicleFilterControls(container) {
         
         // Update loading progress
         if (loading) {
-          loading.innerHTML = `Loading file ${i + 1}/${filesToLoad.length}...<br>${fileInfo.filename}`;
+          const progress = Math.round(((i + 1) / filesToLoad.length) * 100);
+          loading.innerHTML = `
+            <div style="margin-bottom: 10px;">Loading data... ${progress}%</div>
+            <div style="width: 200px; height: 8px; background-color: #e0e0e0; border-radius: 4px; overflow: hidden;">
+              <div style="width: ${progress}%; height: 100%; background-color: #2196F3; transition: width 0.3s ease; border-radius: 4px;"></div>
+            </div>
+          `;
         }
         
         try {
@@ -1619,7 +1718,12 @@ createVehicleFilterControls(container) {
           const response = await fetch(`data/${fileInfo.filename}`);
           
           if (!response.ok) {
-            console.warn(`File not found: ${fileInfo.filename}`);
+            // Don't warn for missing collision/accident files - they might legitimately not exist
+            if (response.status === 404) {
+              console.log(`File not found (expected for some regions/years): ${fileInfo.filename}`);
+            } else {
+              console.warn(`Failed to load ${fileInfo.filename}: ${response.status}`);
+            }
             continue;
           }
           
@@ -1667,7 +1771,9 @@ createVehicleFilterControls(container) {
   }
   
   updateLayers() {
-    this.deckgl.setProps({ layers: this.createLayers() });
+    const layers = this.createLayers();
+    console.log('Updating layers:', layers);
+    this.deckgl.setProps({ layers: layers });
     // Update severity counts when layers change
     this.updateSeverityButtonStates();
   }
@@ -1682,14 +1788,7 @@ createVehicleFilterControls(container) {
     const title = document.getElementById('title');
     if (title) title.textContent = t.title;
     
-    // Update language and map style controls with compact horizontal layout
-    const languageLabel = document.getElementById('language-label');
-    const languageSelect = document.getElementById('language-select');
-    if (languageLabel && languageSelect) {
-      languageLabel.innerHTML = `${t.languageLabel} `;
-      languageLabel.style.cssText = 'display: inline-block; margin-right: 5px;';
-      languageSelect.style.cssText = 'display: inline-block; width: auto;';
-    }
+
     
     const mapStyleLabel = document.getElementById('map-style-label');
     const mapStyleSelect = document.getElementById('map-style-select');
@@ -1697,6 +1796,21 @@ createVehicleFilterControls(container) {
       mapStyleLabel.innerHTML = `${t.mapStyleLabel} `;
       mapStyleLabel.style.cssText = 'display: inline-block; margin-right: 5px;';
       mapStyleSelect.style.cssText = 'display: inline-block; width: auto;';
+    }
+    
+    // Update view mode control
+    const viewModeLabel = document.getElementById('view-mode-label');
+    const viewModeSelect = document.getElementById('view-mode-select');
+    if (viewModeLabel && viewModeSelect) {
+      viewModeLabel.innerHTML = `${t.viewMode} `;
+      viewModeLabel.style.cssText = 'display: inline-block; margin-right: 5px;';
+      viewModeSelect.style.cssText = 'display: inline-block; width: auto;';
+      // Update option labels
+      const pointsOption = viewModeSelect.querySelector('option[value="points"]');
+      const heatmapOption = viewModeSelect.querySelector('option[value="heatmap"]');
+      if (pointsOption) pointsOption.textContent = t.pointsView;
+      if (heatmapOption) heatmapOption.textContent = t.heatmapView;
+      viewModeSelect.value = this.viewMode;
     }
     
     const yearsLabel = document.getElementById('years-label');
@@ -1714,7 +1828,13 @@ createVehicleFilterControls(container) {
         ${t.voivodeshipsLabel}
         <!-- <button class="show-button" onclick="app.showAllVoivodeships()" id="show-all-voivodeships">${t.showAll}</button> -->
         <button class="clear-button" onclick="app.clearVoivodeshipSelection()" id="clear-all-voivodeships">${t.clearAll}</button>
-        <button class="download-button" onclick="app.downloadSelectedData()" id="download-selected" style="background: #2196F3; color: white; border: none; padding: 4px 8px; border-radius: 3px; cursor: pointer; font-size: 11px; margin-left: 5px;">${t.downloadSelected}</button>
+        <div style="position: relative; display: inline-block; margin-left: 5px;">
+          <button class="download-button" onclick="app.toggleDownloadMenu()" id="download-toggle" style="background: #2196F3; color: white; border: none; padding: 4px 8px; border-radius: 3px; cursor: pointer; font-size: 11px;">${t.downloadSelected} ▼</button>
+          <div id="download-menu" style="display: none; position: absolute; top: 100%; left: 0; background: white; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 1001; min-width: 160px;">
+            <button onclick="app.downloadSelectedData('separate')" style="display: block; width: 100%; padding: 8px 12px; border: none; background: none; text-align: left; font-size: 11px; cursor: pointer; border-bottom: 1px solid #eee;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='none'">${t.downloadSeparate}</button>
+            <button onclick="app.downloadSelectedData('combined')" style="display: block; width: 100%; padding: 8px 12px; border: none; background: none; text-align: left; font-size: 11px; cursor: pointer;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='none'">${t.downloadCombined}</button>
+          </div>
+        </div>
       `;
     }
     
@@ -1728,14 +1848,35 @@ createVehicleFilterControls(container) {
       `;
     }
     
-    // Update slider labels - modify radius label to indicate max pixel size
+    // Update slider labels - modify radius label to be context-aware
     const radiusLabel = document.getElementById('radius-label');
     if (radiusLabel) {
-      radiusLabel.textContent = (this.currentLanguage === 'pl' ? 'Maks. rozmiar (px):' : 'Max Size (px):');
+      if (this.viewMode === 'heatmap') {
+        radiusLabel.textContent = t.heatRadius;
+      } else {
+        radiusLabel.textContent = t.pointSize;
+      }
     }
     
     const opacityLabel = document.getElementById('opacity-label');
     if (opacityLabel) opacityLabel.textContent = t.opacity + ':';
+    
+    // Update new panel titles
+    const graphicParametersTitle = document.getElementById('graphic-parameters-title');
+    if (graphicParametersTitle) graphicParametersTitle.textContent = t.graphicParameters;
+    
+    const analysisTitle = document.getElementById('analysis-title');
+    if (analysisTitle) analysisTitle.textContent = t.areaAnalysis;
+    
+    // Update floating button text
+    const graphicParamsText = document.getElementById('graphic-params-text');
+    if (graphicParamsText) graphicParamsText.textContent = t.graphicParameters;
+    
+    const analysisText = document.getElementById('analysis-text');
+    if (analysisText) analysisText.textContent = t.areaAnalysis;
+    
+    // Update language selector
+    this.updateLanguageSelector();
     
     // Update legend items with consistent naming
     const severityLegend = document.getElementById('severity-legend');
@@ -1764,18 +1905,9 @@ createVehicleFilterControls(container) {
     // Update severity control buttons
     this.updateSeverityButtonStates();
     
-    // Update analysis panel language
-    const analysisTitle = document.getElementById('analysis-title');
-    if (analysisTitle) {
-      const t = this.translations[this.currentLanguage];
-      analysisTitle.textContent = t.areaAnalysis;
-    }
-    
+    // Update clear polygons button text
     const clearPolygonsText = document.getElementById('clear-polygons-text');
-    if (clearPolygonsText) {
-      const t = this.translations[this.currentLanguage];
-      clearPolygonsText.textContent = t.clearPolygons;
-    }
+    if (clearPolygonsText) clearPolygonsText.textContent = t.clearPolygons;
     
     // Update drawing button text
     this.updateDrawingUI();
@@ -1798,6 +1930,18 @@ createVehicleFilterControls(container) {
         label.textContent = t[vehicleType];
       }
     });
+  }
+  
+  updateRadiusLabel() {
+    const t = this.translations[this.currentLanguage];
+    const radiusLabel = document.getElementById('radius-label');
+    if (radiusLabel) {
+      if (this.viewMode === 'heatmap') {
+        radiusLabel.textContent = t.heatRadius;
+      } else {
+        radiusLabel.textContent = t.pointSize;
+      }
+    }
   }
   
   updateStatsDisplay() {
@@ -2071,14 +2215,30 @@ createVehicleFilterControls(container) {
       this.currentMapStyle = mapStyleParam;
     }
     
+    // Read view mode
+    const viewModeParam = urlParams.get('viewMode');
+    if (viewModeParam && (viewModeParam === 'points' || viewModeParam === 'heatmap')) {
+      this.viewMode = viewModeParam;
+      const viewModeSelect = document.getElementById('view-mode-select');
+      if (viewModeSelect) {
+        viewModeSelect.value = viewModeParam;
+      }
+    }
+    
+    // Read data type
+    const dataTypeParam = urlParams.get('dataType');
+    if (dataTypeParam && (dataTypeParam === 'collisions' || dataTypeParam === 'accidents' || dataTypeParam === 'both')) {
+      this.dataType = dataTypeParam;
+      const dataTypeSelect = document.getElementById('data-type-select');
+      if (dataTypeSelect) {
+        dataTypeSelect.value = dataTypeParam;
+      }
+    }
+    
     // Read language
     const languageParam = urlParams.get('lang');
     if (languageParam && this.translations[languageParam]) {
       this.currentLanguage = languageParam;
-      const languageSelect = document.getElementById('language-select');
-      if (languageSelect) {
-        languageSelect.value = languageParam;
-      }
     }
     
     // Read point size
@@ -2105,6 +2265,36 @@ createVehicleFilterControls(container) {
       this.controlPanelVisible = false;
       setTimeout(() => this.toggleControlPanel(), 100); // Delay to ensure DOM is ready
     }
+    
+    // Initialize arrow state based on panel visibility
+    setTimeout(() => {
+      const toggleArrow = document.getElementById('toggle-arrow');
+      if (toggleArrow) {
+        if (this.controlPanelVisible) {
+          toggleArrow.classList.add('panel-visible');
+          toggleArrow.classList.remove('panel-hidden');
+        } else {
+          toggleArrow.classList.add('panel-hidden');
+          toggleArrow.classList.remove('panel-visible');
+        }
+      }
+    }, 150);
+    
+    // Read graphic parameters panel visibility
+    const graphicParamsParam = urlParams.get('graphicParams');
+    if (graphicParamsParam === 'true') {
+      this.graphicParametersVisible = false; // Set to false so toggle will make it true
+      setTimeout(() => this.toggleGraphicParametersPanel(), 100);
+    }
+    
+    // Read analysis panel visibility
+    const analysisParam = urlParams.get('analysis');
+    if (analysisParam === 'true') {
+      this.analysisVisible = false; // Set to false so toggle will make it true
+      setTimeout(() => this.toggleAnalysisPanel(), 100);
+    }
+    
+
     
     // Read pie filter state
     const pieFilterParam = urlParams.get('pieFilter');
@@ -2196,6 +2386,16 @@ createVehicleFilterControls(container) {
           urlParams.set('mapStyle', this.currentMapStyle);
         }
         
+        // Add view mode (only if different from default)
+        if (this.viewMode !== 'points') {
+          urlParams.set('viewMode', this.viewMode);
+        }
+        
+        // Add data type (only if different from default)
+        if (this.dataType !== 'both') {
+          urlParams.set('dataType', this.dataType);
+        }
+        
         // Add language (only if different from default)
         if (this.currentLanguage !== 'pl') {
           urlParams.set('lang', this.currentLanguage);
@@ -2217,6 +2417,18 @@ createVehicleFilterControls(container) {
         if (!this.controlPanelVisible) {
           urlParams.set('panel', 'hidden');
         }
+        
+        // Add graphic parameters panel visibility (only if visible)
+        if (this.graphicParametersVisible) {
+          urlParams.set('graphicParams', 'true');
+        }
+        
+        // Add analysis panel visibility (only if visible)
+        if (this.analysisVisible) {
+          urlParams.set('analysis', 'true');
+        }
+        
+
         
         // Add pie filter state (only if enabled)
         if (this.pieFilterEnabled) {
@@ -2243,14 +2455,65 @@ createVehicleFilterControls(container) {
     }, 300); // 300ms debounce
   }
   
-  downloadSelectedData() {
-    if (!this.currentData || !this.currentData.features || this.currentData.features.length === 0) {
-      alert(this.translations[this.currentLanguage].noDataLoaded);
+  toggleDownloadMenu() {
+    const menu = document.getElementById('download-menu');
+    if (menu) {
+      const isVisible = menu.style.display === 'block';
+      menu.style.display = isVisible ? 'none' : 'block';
+      
+      // Close menu when clicking outside
+      if (!isVisible) {
+        const closeMenu = (e) => {
+          if (!e.target.closest('#download-toggle') && !e.target.closest('#download-menu')) {
+            menu.style.display = 'none';
+            document.removeEventListener('click', closeMenu);
+          }
+        };
+        setTimeout(() => document.addEventListener('click', closeMenu), 10);
+      }
+    }
+  }
+  
+  toggleDownloadMenu() {
+    const menu = document.getElementById('download-menu');
+    if (menu) {
+      const isVisible = menu.style.display === 'block';
+      menu.style.display = isVisible ? 'none' : 'block';
+      
+      // Close menu when clicking outside
+      if (!isVisible) {
+        const closeMenu = (e) => {
+          if (!e.target.closest('#download-toggle') && !e.target.closest('#download-menu')) {
+            menu.style.display = 'none';
+            document.removeEventListener('click', closeMenu);
+          }
+        };
+        setTimeout(() => document.addEventListener('click', closeMenu), 10);
+      }
+    }
+  }
+  
+  downloadSelectedData(mode = 'combined') {
+    // Close dropdown menu
+    const menu = document.getElementById('download-menu');
+    if (menu) menu.style.display = 'none';
+    
+    const selectedYears = Array.from(this.selectedYears);
+    const selectedVoivodeships = Array.from(this.selectedVoivodeships);
+    
+    if (selectedYears.length === 0 || selectedVoivodeships.length === 0) {
+      alert('Please select at least one year and one voivodeship.');
       return;
     }
     
-    // Filter features based on severity visibility and vehicle filters
-    const visibleFeatures = this.currentData.features.filter(feature => {
+    // Filter current data based on selections
+    if (!this.currentData || !this.currentData.features || this.currentData.features.length === 0) {
+      alert('No data available to download.');
+      return;
+    }
+    
+    // Apply the same filters as the display
+    const filteredFeatures = this.currentData.features.filter(feature => {
       const severity = this.getSeverityFromFeature(feature);
       const severityVisible = this.severityVisibility[severity];
       
@@ -2285,115 +2548,127 @@ createVehicleFilterControls(container) {
       return severityVisible;
     });
     
+    if (filteredFeatures.length === 0) {
+      alert('No data matches current filters.');
+      return;
+    }
+    
+    if (mode === 'separate') {
+      // Download as separate files by year and voivodeship
+      this.downloadSeparateFiles(filteredFeatures, selectedYears, selectedVoivodeships);
+    } else {
+      // Download as one combined file
+      this.downloadCombinedFile(filteredFeatures, selectedYears, selectedVoivodeships);
+    }
+  }
+  
+  downloadCombinedFile(features, selectedYears, selectedVoivodeships) {
+    // Create GeoJSON for download
+    const downloadData = {
+      type: 'FeatureCollection',
+      features: features,
+      metadata: {
+        exported_at: new Date().toISOString(),
+        years: selectedYears,
+        voivodeships: selectedVoivodeships,
+        total_features: features.length,
+        filters: {
+          severity: Object.keys(this.severityVisibility).filter(s => this.severityVisibility[s]),
+          vehicles: Object.keys(this.vehicleFilters).filter(v => this.vehicleFilters[v]),
+          dataType: this.dataType
+        },
+        source: 'SEWIK - System Ewidencji Wypadków i Kolizji'
+      }
+    };
+    
+    // Create filename
+    const yearStr = selectedYears.length === 1 ? selectedYears[0] : `${Math.min(...selectedYears)}-${Math.max(...selectedYears)}`;
+    const voivodeshipStr = selectedVoivodeships.length === 1 ? selectedVoivodeships[0] : `${selectedVoivodeships.length}_voivodeships`;
+    const timestamp = new Date().toISOString().slice(0, 10);
+    const dataTypeStr = this.dataType !== 'both' ? `_${this.dataType}` : '';
+    const filename = `sewik_accidents_${yearStr}_${voivodeshipStr}${dataTypeStr}_${timestamp}.geojson`;
+    
+    // Download file
+    const blob = new Blob([JSON.stringify(downloadData, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    console.log(`Downloaded ${features.length} features as ${filename}`);
+  }
+  
+  downloadSeparateFiles(features, selectedYears, selectedVoivodeships) {
+    const timestamp = new Date().toISOString().slice(0, 10);
+    const dataTypeStr = this.dataType !== 'both' ? `_${this.dataType}` : '';
+    
     // Group features by year and voivodeship
     const groupedFeatures = {};
-    const selectedYears = Array.from(this.selectedYears).sort();
-    const selectedVoivodeships = Array.from(this.selectedVoivodeships).sort();
     
-    // Initialize groups
-    selectedYears.forEach(year => {
-      selectedVoivodeships.forEach(voivodeship => {
-        const key = `${year}_${voivodeship}`;
-        groupedFeatures[key] = {
-          year: year,
-          voivodeship: voivodeship,
-          features: []
-        };
-      });
-    });
-    
-    // Group visible features
-    visibleFeatures.forEach(feature => {
-      const props = feature.properties;
-      const year = props.yr || props.year;
-      const voivodeshipCode = props.WOJ;
+    features.forEach(feature => {
+      const year = feature.properties.yr || feature.properties.year || 'unknown';
+      const voivodeshipCode = feature.properties.WOJ;
+      const voivodeshipName = this.voivodeshipCodeToName[voivodeshipCode] || voivodeshipCode || 'unknown';
       
-      // Find voivodeship name from code
-      const voivodeshipName = this.voivodeshipCodeToName[voivodeshipCode] || voivodeshipCode;
-      
-      const key = `${year}_${voivodeshipName}`;
-      if (groupedFeatures[key]) {
+      if (selectedYears.includes(year) && selectedVoivodeships.includes(voivodeshipName)) {
+        const key = `${year}_${voivodeshipName}`;
+        if (!groupedFeatures[key]) {
+          groupedFeatures[key] = {
+            year: year,
+            voivodeship: voivodeshipName,
+            features: []
+          };
+        }
         groupedFeatures[key].features.push(feature);
       }
     });
     
-    // Create and download separate files for each group
+    // Create and download separate files
     let downloadCount = 0;
-    const downloadDelay = 500; // 500ms delay between downloads
-    
-    Object.entries(groupedFeatures).forEach(([key, group], index) => {
-      if (group.features.length === 0) {
-        return; // Skip empty groups
-      }
+    Object.keys(groupedFeatures).forEach((key, index) => {
+      const group = groupedFeatures[key];
       
-      // Create GeoJSON for this group
-      const geojsonData = {
+      const downloadData = {
         type: 'FeatureCollection',
         features: group.features,
         metadata: {
-          exportDate: new Date().toISOString(),
+          exported_at: new Date().toISOString(),
           year: group.year,
           voivodeship: group.voivodeship,
-          visibleSeverities: Object.keys(this.severityVisibility).filter(s => this.severityVisibility[s]),
-          totalFeatures: group.features.length,
+          total_features: group.features.length,
+          filters: {
+            severity: Object.keys(this.severityVisibility).filter(s => this.severityVisibility[s]),
+            vehicles: Object.keys(this.vehicleFilters).filter(v => this.vehicleFilters[v]),
+            dataType: this.dataType
+          },
           source: 'SEWIK - System Ewidencji Wypadków i Kolizji'
         }
       };
       
-      // Create filename
-      const filename = `accidents_${group.year}_${group.voivodeship}.geojson`;
+      const filename = `sewik_accidents_${group.year}_${group.voivodeship}${dataTypeStr}_${timestamp}.geojson`;
       
-      // Schedule download with delay to avoid browser blocking multiple downloads
+      // Add a small delay between downloads to avoid browser issues
       setTimeout(() => {
-        const dataStr = JSON.stringify(geojsonData, null, 2);
-        const dataBlob = new Blob([dataStr], { type: 'application/json' });
+        const blob = new Blob([JSON.stringify(downloadData, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
         
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(dataBlob);
-        link.download = filename;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        
-        // Clean up URL object
-        setTimeout(() => URL.revokeObjectURL(link.href), 1000);
-        
-        console.log(`Downloaded ${group.features.length} accident records to ${filename}`);
-      }, index * downloadDelay);
-      
-      downloadCount++;
+        downloadCount++;
+        console.log(`Downloaded ${group.features.length} features as ${filename} (${downloadCount}/${Object.keys(groupedFeatures).length})`);
+      }, index * 200); // 200ms delay between downloads
     });
     
-    if (downloadCount > 0) {
-      const t = this.translations[this.currentLanguage];
-      const message = this.currentLanguage === 'pl' 
-        ? `Rozpoczęto pobieranie ${downloadCount} plików GeoJSON...`
-        : `Started downloading ${downloadCount} GeoJSON files...`;
-      
-      // Show notification
-      const notification = document.createElement('div');
-      notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #4CAF50;
-        color: white;
-        padding: 12px 20px;
-        border-radius: 4px;
-        z-index: 10001;
-        font-size: 14px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      `;
-      notification.textContent = message;
-      document.body.appendChild(notification);
-      
-      // Remove notification after a few seconds
-      setTimeout(() => {
-        if (notification.parentNode) {
-          notification.parentNode.removeChild(notification);
-        }
-      }, 3000 + (downloadCount * downloadDelay));
-    }
+    console.log(`Initiated download of ${Object.keys(groupedFeatures).length} separate files`);
   }
 }
 

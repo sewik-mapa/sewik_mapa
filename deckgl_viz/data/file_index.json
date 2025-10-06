@@ -1,1343 +1,2463 @@
 [
   {
+    "filename": "collisions_2018_DOLNOŚLĄSKIE.geojson",
+    "year": 2018,
+    "voivodeship": "DOLNOŚLĄSKIE",
+    "accident_count": 40130,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 40130
+    }
+  },
+  {
     "filename": "accidents_2018_DOLNOŚLĄSKIE.geojson",
     "year": 2018,
     "voivodeship": "DOLNOŚLĄSKIE",
-    "accident_count": 42278,
+    "accident_count": 2148,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 40130,
       "1": 1143,
       "2": 821,
       "3": 184
     }
   },
   {
+    "filename": "collisions_2018_KUJAWSKO-POMORSKIE.geojson",
+    "year": 2018,
+    "voivodeship": "KUJAWSKO-POMORSKIE",
+    "accident_count": 27755,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 27755
+    }
+  },
+  {
     "filename": "accidents_2018_KUJAWSKO-POMORSKIE.geojson",
     "year": 2018,
     "voivodeship": "KUJAWSKO-POMORSKIE",
-    "accident_count": 28725,
+    "accident_count": 970,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 27755,
       "1": 470,
       "2": 345,
       "3": 155
     }
   },
   {
+    "filename": "collisions_2018_LUBELSKIE.geojson",
+    "year": 2018,
+    "voivodeship": "LUBELSKIE",
+    "accident_count": 20067,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 20067
+    }
+  },
+  {
     "filename": "accidents_2018_LUBELSKIE.geojson",
     "year": 2018,
     "voivodeship": "LUBELSKIE",
-    "accident_count": 21282,
+    "accident_count": 1215,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 20067,
       "1": 532,
       "2": 519,
       "3": 164
     }
   },
   {
+    "filename": "collisions_2018_LUBUSKIE.geojson",
+    "year": 2018,
+    "voivodeship": "LUBUSKIE",
+    "accident_count": 11459,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 11459
+    }
+  },
+  {
     "filename": "accidents_2018_LUBUSKIE.geojson",
     "year": 2018,
     "voivodeship": "LUBUSKIE",
-    "accident_count": 12122,
+    "accident_count": 663,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 11459,
       "2": 321,
       "1": 270,
       "3": 72
     }
   },
   {
+    "filename": "collisions_2018_ŁÓDZKIE.geojson",
+    "year": 2018,
+    "voivodeship": "ŁÓDZKIE",
+    "accident_count": 27982,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 27982
+    }
+  },
+  {
     "filename": "accidents_2018_ŁÓDZKIE.geojson",
     "year": 2018,
     "voivodeship": "ŁÓDZKIE",
-    "accident_count": 31738,
+    "accident_count": 3756,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 27982,
       "1": 2486,
       "2": 1053,
       "3": 217
     }
   },
   {
+    "filename": "collisions_2018_MAŁOPOLSKIE.geojson",
+    "year": 2018,
+    "voivodeship": "MAŁOPOLSKIE",
+    "accident_count": 31343,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 31343
+    }
+  },
+  {
     "filename": "accidents_2018_MAŁOPOLSKIE.geojson",
     "year": 2018,
     "voivodeship": "MAŁOPOLSKIE",
-    "accident_count": 34742,
+    "accident_count": 3399,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 31343,
       "1": 2177,
       "2": 1017,
       "3": 205
     }
   },
   {
+    "filename": "collisions_2018_MAZOWIECKIE.geojson",
+    "year": 2018,
+    "voivodeship": "MAZOWIECKIE",
+    "accident_count": 68310,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 68310
+    }
+  },
+  {
     "filename": "accidents_2018_MAZOWIECKIE.geojson",
     "year": 2018,
     "voivodeship": "MAZOWIECKIE",
-    "accident_count": 72313,
+    "accident_count": 4003,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 68310,
       "1": 2847,
       "2": 735,
       "3": 421
     }
   },
   {
+    "filename": "collisions_2018_OPOLSKIE.geojson",
+    "year": 2018,
+    "voivodeship": "OPOLSKIE",
+    "accident_count": 10189,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 10189
+    }
+  },
+  {
     "filename": "accidents_2018_OPOLSKIE.geojson",
     "year": 2018,
     "voivodeship": "OPOLSKIE",
-    "accident_count": 10894,
+    "accident_count": 705,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 10189,
       "1": 406,
       "2": 229,
       "3": 70
     }
   },
   {
+    "filename": "collisions_2018_PODKARPACKIE.geojson",
+    "year": 2018,
+    "voivodeship": "PODKARPACKIE",
+    "accident_count": 18501,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 18501
+    }
+  },
+  {
     "filename": "accidents_2018_PODKARPACKIE.geojson",
     "year": 2018,
     "voivodeship": "PODKARPACKIE",
-    "accident_count": 19981,
+    "accident_count": 1480,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 18501,
       "1": 1082,
       "2": 284,
       "3": 114
     }
   },
   {
+    "filename": "collisions_2018_PODLASKIE.geojson",
+    "year": 2018,
+    "voivodeship": "PODLASKIE",
+    "accident_count": 13480,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 13480
+    }
+  },
+  {
     "filename": "accidents_2018_PODLASKIE.geojson",
     "year": 2018,
     "voivodeship": "PODLASKIE",
-    "accident_count": 14152,
+    "accident_count": 672,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 13480,
       "2": 300,
       "1": 283,
       "3": 89
     }
   },
   {
+    "filename": "collisions_2018_POMORSKIE.geojson",
+    "year": 2018,
+    "voivodeship": "POMORSKIE",
+    "accident_count": 26853,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 26853
+    }
+  },
+  {
     "filename": "accidents_2018_POMORSKIE.geojson",
     "year": 2018,
     "voivodeship": "POMORSKIE",
-    "accident_count": 29355,
+    "accident_count": 2502,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 26853,
       "1": 1786,
       "2": 583,
       "3": 133
     }
   },
   {
+    "filename": "collisions_2018_ŚLĄSKIE.geojson",
+    "year": 2018,
+    "voivodeship": "ŚLĄSKIE",
+    "accident_count": 54542,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 54542
+    }
+  },
+  {
     "filename": "accidents_2018_ŚLĄSKIE.geojson",
     "year": 2018,
     "voivodeship": "ŚLĄSKIE",
-    "accident_count": 57764,
+    "accident_count": 3222,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 54542,
       "1": 2073,
       "2": 939,
       "3": 210
     }
   },
   {
+    "filename": "collisions_2018_ŚWIĘTOKRZYSKIE.geojson",
+    "year": 2018,
+    "voivodeship": "ŚWIĘTOKRZYSKIE",
+    "accident_count": 13016,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 13016
+    }
+  },
+  {
     "filename": "accidents_2018_ŚWIĘTOKRZYSKIE.geojson",
     "year": 2018,
     "voivodeship": "ŚWIĘTOKRZYSKIE",
-    "accident_count": 14217,
+    "accident_count": 1201,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 13016,
       "1": 746,
       "2": 336,
       "3": 119
     }
   },
   {
+    "filename": "collisions_2018_WARMIŃSKO-MAZURSKIE.geojson",
+    "year": 2018,
+    "voivodeship": "WARMIŃSKO-MAZURSKIE",
+    "accident_count": 16137,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 16137
+    }
+  },
+  {
     "filename": "accidents_2018_WARMIŃSKO-MAZURSKIE.geojson",
     "year": 2018,
     "voivodeship": "WARMIŃSKO-MAZURSKIE",
-    "accident_count": 17418,
+    "accident_count": 1281,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 16137,
       "1": 738,
       "2": 424,
       "3": 119
     }
   },
   {
+    "filename": "collisions_2018_WIELKOPOLSKIE.geojson",
+    "year": 2018,
+    "voivodeship": "WIELKOPOLSKIE",
+    "accident_count": 35862,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 35862
+    }
+  },
+  {
     "filename": "accidents_2018_WIELKOPOLSKIE.geojson",
     "year": 2018,
     "voivodeship": "WIELKOPOLSKIE",
-    "accident_count": 39094,
+    "accident_count": 3232,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 35862,
       "1": 1958,
       "2": 1026,
       "3": 248
     }
   },
   {
+    "filename": "collisions_2018_ZACHODNIOPOMORSKIE.geojson",
+    "year": 2018,
+    "voivodeship": "ZACHODNIOPOMORSKIE",
+    "accident_count": 19335,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 19335
+    }
+  },
+  {
     "filename": "accidents_2018_ZACHODNIOPOMORSKIE.geojson",
     "year": 2018,
     "voivodeship": "ZACHODNIOPOMORSKIE",
-    "accident_count": 20497,
+    "accident_count": 1162,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 19335,
       "1": 637,
       "2": 407,
       "3": 118
     }
   },
   {
+    "filename": "collisions_2019_DOLNOŚLĄSKIE.geojson",
+    "year": 2019,
+    "voivodeship": "DOLNOŚLĄSKIE",
+    "accident_count": 42380,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 42380
+    }
+  },
+  {
     "filename": "accidents_2019_DOLNOŚLĄSKIE.geojson",
     "year": 2019,
     "voivodeship": "DOLNOŚLĄSKIE",
-    "accident_count": 44308,
+    "accident_count": 1928,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 42380,
       "1": 960,
       "2": 777,
       "3": 191
     }
   },
   {
+    "filename": "collisions_2019_KUJAWSKO-POMORSKIE.geojson",
+    "year": 2019,
+    "voivodeship": "KUJAWSKO-POMORSKIE",
+    "accident_count": 28460,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 28460
+    }
+  },
+  {
     "filename": "accidents_2019_KUJAWSKO-POMORSKIE.geojson",
     "year": 2019,
     "voivodeship": "KUJAWSKO-POMORSKIE",
-    "accident_count": 29400,
+    "accident_count": 940,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 28460,
       "1": 417,
       "2": 333,
       "3": 190
     }
   },
   {
+    "filename": "collisions_2019_LUBELSKIE.geojson",
+    "year": 2019,
+    "voivodeship": "LUBELSKIE",
+    "accident_count": 20483,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 20483
+    }
+  },
+  {
     "filename": "accidents_2019_LUBELSKIE.geojson",
     "year": 2019,
     "voivodeship": "LUBELSKIE",
-    "accident_count": 21622,
+    "accident_count": 1139,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 20483,
       "2": 514,
       "1": 467,
       "3": 158
     }
   },
   {
+    "filename": "collisions_2019_LUBUSKIE.geojson",
+    "year": 2019,
+    "voivodeship": "LUBUSKIE",
+    "accident_count": 12025,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 12025
+    }
+  },
+  {
     "filename": "accidents_2019_LUBUSKIE.geojson",
     "year": 2019,
     "voivodeship": "LUBUSKIE",
-    "accident_count": 12685,
+    "accident_count": 660,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 12025,
       "2": 339,
       "1": 242,
       "3": 79
     }
   },
   {
+    "filename": "collisions_2019_ŁÓDZKIE.geojson",
+    "year": 2019,
+    "voivodeship": "ŁÓDZKIE",
+    "accident_count": 30183,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 30183
+    }
+  },
+  {
     "filename": "accidents_2019_ŁÓDZKIE.geojson",
     "year": 2019,
     "voivodeship": "ŁÓDZKIE",
-    "accident_count": 33532,
+    "accident_count": 3349,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 30183,
       "1": 2193,
       "2": 936,
       "3": 220
     }
   },
   {
+    "filename": "collisions_2019_MAŁOPOLSKIE.geojson",
+    "year": 2019,
+    "voivodeship": "MAŁOPOLSKIE",
+    "accident_count": 33828,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 33828
+    }
+  },
+  {
     "filename": "accidents_2019_MAŁOPOLSKIE.geojson",
     "year": 2019,
     "voivodeship": "MAŁOPOLSKIE",
-    "accident_count": 36964,
+    "accident_count": 3136,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 33828,
       "1": 2004,
       "2": 964,
       "3": 168
     }
   },
   {
+    "filename": "collisions_2019_MAZOWIECKIE.geojson",
+    "year": 2019,
+    "voivodeship": "MAZOWIECKIE",
+    "accident_count": 70259,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 70259
+    }
+  },
+  {
     "filename": "accidents_2019_MAZOWIECKIE.geojson",
     "year": 2019,
     "voivodeship": "MAZOWIECKIE",
-    "accident_count": 74057,
+    "accident_count": 3798,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 70259,
       "1": 2591,
       "2": 776,
       "3": 431
     }
   },
   {
+    "filename": "collisions_2019_OPOLSKIE.geojson",
+    "year": 2019,
+    "voivodeship": "OPOLSKIE",
+    "accident_count": 10841,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 10841
+    }
+  },
+  {
     "filename": "accidents_2019_OPOLSKIE.geojson",
     "year": 2019,
     "voivodeship": "OPOLSKIE",
-    "accident_count": 11455,
+    "accident_count": 614,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 10841,
       "1": 369,
       "2": 176,
       "3": 69
     }
   },
   {
+    "filename": "collisions_2019_PODKARPACKIE.geojson",
+    "year": 2019,
+    "voivodeship": "PODKARPACKIE",
+    "accident_count": 19025,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 19025
+    }
+  },
+  {
     "filename": "accidents_2019_PODKARPACKIE.geojson",
     "year": 2019,
     "voivodeship": "PODKARPACKIE",
-    "accident_count": 20506,
+    "accident_count": 1481,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 19025,
       "1": 1020,
       "2": 315,
       "3": 146
     }
   },
   {
+    "filename": "collisions_2019_PODLASKIE.geojson",
+    "year": 2019,
+    "voivodeship": "PODLASKIE",
+    "accident_count": 14041,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 14041
+    }
+  },
+  {
     "filename": "accidents_2019_PODLASKIE.geojson",
     "year": 2019,
     "voivodeship": "PODLASKIE",
-    "accident_count": 14626,
+    "accident_count": 585,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 14041,
       "2": 268,
       "1": 222,
       "3": 95
     }
   },
   {
+    "filename": "collisions_2019_POMORSKIE.geojson",
+    "year": 2019,
+    "voivodeship": "POMORSKIE",
+    "accident_count": 28608,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 28608
+    }
+  },
+  {
     "filename": "accidents_2019_POMORSKIE.geojson",
     "year": 2019,
     "voivodeship": "POMORSKIE",
-    "accident_count": 30905,
+    "accident_count": 2297,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 28608,
       "1": 1636,
       "2": 510,
       "3": 151
     }
   },
   {
+    "filename": "collisions_2019_ŚLĄSKIE.geojson",
+    "year": 2019,
+    "voivodeship": "ŚLĄSKIE",
+    "accident_count": 58163,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 58163
+    }
+  },
+  {
     "filename": "accidents_2019_ŚLĄSKIE.geojson",
     "year": 2019,
     "voivodeship": "ŚLĄSKIE",
-    "accident_count": 61128,
+    "accident_count": 2965,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 58163,
       "1": 1879,
       "2": 898,
       "3": 188
     }
   },
   {
+    "filename": "collisions_2019_ŚWIĘTOKRZYSKIE.geojson",
+    "year": 2019,
+    "voivodeship": "ŚWIĘTOKRZYSKIE",
+    "accident_count": 13461,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 13461
+    }
+  },
+  {
     "filename": "accidents_2019_ŚWIĘTOKRZYSKIE.geojson",
     "year": 2019,
     "voivodeship": "ŚWIĘTOKRZYSKIE",
-    "accident_count": 14517,
+    "accident_count": 1056,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 13461,
       "1": 640,
       "2": 296,
       "3": 120
     }
   },
   {
+    "filename": "collisions_2019_WARMIŃSKO-MAZURSKIE.geojson",
+    "year": 2019,
+    "voivodeship": "WARMIŃSKO-MAZURSKIE",
+    "accident_count": 16223,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 16223
+    }
+  },
+  {
     "filename": "accidents_2019_WARMIŃSKO-MAZURSKIE.geojson",
     "year": 2019,
     "voivodeship": "WARMIŃSKO-MAZURSKIE",
-    "accident_count": 17441,
+    "accident_count": 1218,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 16223,
       "1": 701,
       "2": 422,
       "3": 95
     }
   },
   {
+    "filename": "collisions_2019_WIELKOPOLSKIE.geojson",
+    "year": 2019,
+    "voivodeship": "WIELKOPOLSKIE",
+    "accident_count": 35721,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 35721
+    }
+  },
+  {
     "filename": "accidents_2019_WIELKOPOLSKIE.geojson",
     "year": 2019,
     "voivodeship": "WIELKOPOLSKIE",
-    "accident_count": 39613,
+    "accident_count": 3892,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 35721,
       "1": 2503,
       "2": 1132,
       "3": 257
     }
   },
   {
+    "filename": "collisions_2019_ZACHODNIOPOMORSKIE.geojson",
+    "year": 2019,
+    "voivodeship": "ZACHODNIOPOMORSKIE",
+    "accident_count": 20750,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 20750
+    }
+  },
+  {
     "filename": "accidents_2019_ZACHODNIOPOMORSKIE.geojson",
     "year": 2019,
     "voivodeship": "ZACHODNIOPOMORSKIE",
-    "accident_count": 21964,
+    "accident_count": 1214,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 20750,
       "1": 659,
       "2": 441,
       "3": 114
     }
   },
   {
+    "filename": "collisions_2020_DOLNOŚLĄSKIE.geojson",
+    "year": 2020,
+    "voivodeship": "DOLNOŚLĄSKIE",
+    "accident_count": 35758,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 35758
+    }
+  },
+  {
     "filename": "accidents_2020_DOLNOŚLĄSKIE.geojson",
     "year": 2020,
     "voivodeship": "DOLNOŚLĄSKIE",
-    "accident_count": 37336,
+    "accident_count": 1578,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 35758,
       "1": 817,
       "2": 608,
       "3": 153
     }
   },
   {
+    "filename": "collisions_2020_KUJAWSKO-POMORSKIE.geojson",
+    "year": 2020,
+    "voivodeship": "KUJAWSKO-POMORSKIE",
+    "accident_count": 24021,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 24021
+    }
+  },
+  {
     "filename": "accidents_2020_KUJAWSKO-POMORSKIE.geojson",
     "year": 2020,
     "voivodeship": "KUJAWSKO-POMORSKIE",
-    "accident_count": 24848,
+    "accident_count": 827,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 24021,
       "1": 400,
       "2": 300,
       "3": 127
     }
   },
   {
+    "filename": "collisions_2020_LUBELSKIE.geojson",
+    "year": 2020,
+    "voivodeship": "LUBELSKIE",
+    "accident_count": 16905,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 16905
+    }
+  },
+  {
     "filename": "accidents_2020_LUBELSKIE.geojson",
     "year": 2020,
     "voivodeship": "LUBELSKIE",
-    "accident_count": 17836,
+    "accident_count": 931,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 16905,
       "2": 407,
       "1": 378,
       "3": 146
     }
   },
   {
+    "filename": "collisions_2020_LUBUSKIE.geojson",
+    "year": 2020,
+    "voivodeship": "LUBUSKIE",
+    "accident_count": 10210,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 10210
+    }
+  },
+  {
     "filename": "accidents_2020_LUBUSKIE.geojson",
     "year": 2020,
     "voivodeship": "LUBUSKIE",
-    "accident_count": 10817,
+    "accident_count": 607,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 10210,
       "2": 305,
       "1": 233,
       "3": 69
     }
   },
   {
+    "filename": "collisions_2020_ŁÓDZKIE.geojson",
+    "year": 2020,
+    "voivodeship": "ŁÓDZKIE",
+    "accident_count": 26295,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 26295
+    }
+  },
+  {
     "filename": "accidents_2020_ŁÓDZKIE.geojson",
     "year": 2020,
     "voivodeship": "ŁÓDZKIE",
-    "accident_count": 28731,
+    "accident_count": 2436,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 26295,
       "1": 1503,
       "2": 731,
       "3": 202
     }
   },
   {
+    "filename": "collisions_2020_MAŁOPOLSKIE.geojson",
+    "year": 2020,
+    "voivodeship": "MAŁOPOLSKIE",
+    "accident_count": 27722,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 27722
+    }
+  },
+  {
     "filename": "accidents_2020_MAŁOPOLSKIE.geojson",
     "year": 2020,
     "voivodeship": "MAŁOPOLSKIE",
-    "accident_count": 29986,
+    "accident_count": 2264,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 27722,
       "1": 1318,
       "2": 801,
       "3": 145
     }
   },
   {
+    "filename": "collisions_2020_MAZOWIECKIE.geojson",
+    "year": 2020,
+    "voivodeship": "MAZOWIECKIE",
+    "accident_count": 58501,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 58501
+    }
+  },
+  {
     "filename": "accidents_2020_MAZOWIECKIE.geojson",
     "year": 2020,
     "voivodeship": "MAZOWIECKIE",
-    "accident_count": 61456,
+    "accident_count": 2955,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 58501,
       "1": 1930,
       "2": 643,
       "3": 382
     }
   },
   {
+    "filename": "collisions_2020_OPOLSKIE.geojson",
+    "year": 2020,
+    "voivodeship": "OPOLSKIE",
+    "accident_count": 8911,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 8911
+    }
+  },
+  {
     "filename": "accidents_2020_OPOLSKIE.geojson",
     "year": 2020,
     "voivodeship": "OPOLSKIE",
-    "accident_count": 9399,
+    "accident_count": 488,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 8911,
       "1": 280,
       "2": 148,
       "3": 60
     }
   },
   {
+    "filename": "collisions_2020_PODKARPACKIE.geojson",
+    "year": 2020,
+    "voivodeship": "PODKARPACKIE",
+    "accident_count": 16066,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 16066
+    }
+  },
+  {
     "filename": "accidents_2020_PODKARPACKIE.geojson",
     "year": 2020,
     "voivodeship": "PODKARPACKIE",
-    "accident_count": 17232,
+    "accident_count": 1166,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 16066,
       "1": 812,
       "2": 228,
       "3": 126
     }
   },
   {
+    "filename": "collisions_2020_PODLASKIE.geojson",
+    "year": 2020,
+    "voivodeship": "PODLASKIE",
+    "accident_count": 11301,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 11301
+    }
+  },
+  {
     "filename": "accidents_2020_PODLASKIE.geojson",
     "year": 2020,
     "voivodeship": "PODLASKIE",
-    "accident_count": 11731,
+    "accident_count": 430,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 11301,
       "2": 185,
       "1": 172,
       "3": 73
     }
   },
   {
+    "filename": "collisions_2020_POMORSKIE.geojson",
+    "year": 2020,
+    "voivodeship": "POMORSKIE",
+    "accident_count": 23974,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 23974
+    }
+  },
+  {
     "filename": "accidents_2020_POMORSKIE.geojson",
     "year": 2020,
     "voivodeship": "POMORSKIE",
-    "accident_count": 25822,
+    "accident_count": 1848,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 23974,
       "1": 1240,
       "2": 462,
       "3": 146
     }
   },
   {
+    "filename": "collisions_2020_ŚLĄSKIE.geojson",
+    "year": 2020,
+    "voivodeship": "ŚLĄSKIE",
+    "accident_count": 47444,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 47444
+    }
+  },
+  {
     "filename": "accidents_2020_ŚLĄSKIE.geojson",
     "year": 2020,
     "voivodeship": "ŚLĄSKIE",
-    "accident_count": 49827,
+    "accident_count": 2383,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 47444,
       "1": 1452,
       "2": 761,
       "3": 170
     }
   },
   {
+    "filename": "collisions_2020_ŚWIĘTOKRZYSKIE.geojson",
+    "year": 2020,
+    "voivodeship": "ŚWIĘTOKRZYSKIE",
+    "accident_count": 11619,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 11619
+    }
+  },
+  {
     "filename": "accidents_2020_ŚWIĘTOKRZYSKIE.geojson",
     "year": 2020,
     "voivodeship": "ŚWIĘTOKRZYSKIE",
-    "accident_count": 12449,
+    "accident_count": 830,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 11619,
       "1": 473,
       "2": 265,
       "3": 92
     }
   },
   {
+    "filename": "collisions_2020_WARMIŃSKO-MAZURSKIE.geojson",
+    "year": 2020,
+    "voivodeship": "WARMIŃSKO-MAZURSKIE",
+    "accident_count": 13762,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 13762
+    }
+  },
+  {
     "filename": "accidents_2020_WARMIŃSKO-MAZURSKIE.geojson",
     "year": 2020,
     "voivodeship": "WARMIŃSKO-MAZURSKIE",
-    "accident_count": 14802,
+    "accident_count": 1040,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 13762,
       "1": 537,
       "2": 402,
       "3": 101
     }
   },
   {
+    "filename": "collisions_2020_WIELKOPOLSKIE.geojson",
+    "year": 2020,
+    "voivodeship": "WIELKOPOLSKIE",
+    "accident_count": 30810,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 30810
+    }
+  },
+  {
     "filename": "accidents_2020_WIELKOPOLSKIE.geojson",
     "year": 2020,
     "voivodeship": "WIELKOPOLSKIE",
-    "accident_count": 33631,
+    "accident_count": 2821,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 30810,
       "1": 1689,
       "2": 932,
       "3": 200
     }
   },
   {
+    "filename": "collisions_2020_ZACHODNIOPOMORSKIE.geojson",
+    "year": 2020,
+    "voivodeship": "ZACHODNIOPOMORSKIE",
+    "accident_count": 17862,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 17862
+    }
+  },
+  {
     "filename": "accidents_2020_ZACHODNIOPOMORSKIE.geojson",
     "year": 2020,
     "voivodeship": "ZACHODNIOPOMORSKIE",
-    "accident_count": 18787,
+    "accident_count": 925,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 17862,
       "1": 434,
       "2": 397,
       "3": 94
     }
   },
   {
+    "filename": "collisions_2021_DOLNOŚLĄSKIE.geojson",
+    "year": 2021,
+    "voivodeship": "DOLNOŚLĄSKIE",
+    "accident_count": 39573,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 39573
+    }
+  },
+  {
     "filename": "accidents_2021_DOLNOŚLĄSKIE.geojson",
     "year": 2021,
     "voivodeship": "DOLNOŚLĄSKIE",
-    "accident_count": 41303,
+    "accident_count": 1730,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 39573,
       "1": 978,
       "2": 586,
       "3": 166
     }
   },
   {
+    "filename": "collisions_2021_KUJAWSKO-POMORSKIE.geojson",
+    "year": 2021,
+    "voivodeship": "KUJAWSKO-POMORSKIE",
+    "accident_count": 26182,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 26182
+    }
+  },
+  {
     "filename": "accidents_2021_KUJAWSKO-POMORSKIE.geojson",
     "year": 2021,
     "voivodeship": "KUJAWSKO-POMORSKIE",
-    "accident_count": 26979,
+    "accident_count": 797,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 26182,
       "1": 385,
       "2": 298,
       "3": 114
     }
   },
   {
+    "filename": "collisions_2021_LUBELSKIE.geojson",
+    "year": 2021,
+    "voivodeship": "LUBELSKIE",
+    "accident_count": 19849,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 19849
+    }
+  },
+  {
     "filename": "accidents_2021_LUBELSKIE.geojson",
     "year": 2021,
     "voivodeship": "LUBELSKIE",
-    "accident_count": 20741,
+    "accident_count": 892,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 19849,
       "2": 396,
       "1": 369,
       "3": 127
     }
   },
   {
+    "filename": "collisions_2021_LUBUSKIE.geojson",
+    "year": 2021,
+    "voivodeship": "LUBUSKIE",
+    "accident_count": 10656,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 10656
+    }
+  },
+  {
     "filename": "accidents_2021_LUBUSKIE.geojson",
     "year": 2021,
     "voivodeship": "LUBUSKIE",
-    "accident_count": 11196,
+    "accident_count": 540,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 10656,
       "1": 292,
       "2": 185,
       "3": 63
     }
   },
   {
+    "filename": "collisions_2021_ŁÓDZKIE.geojson",
+    "year": 2021,
+    "voivodeship": "ŁÓDZKIE",
+    "accident_count": 28193,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 28193
+    }
+  },
+  {
     "filename": "accidents_2021_ŁÓDZKIE.geojson",
     "year": 2021,
     "voivodeship": "ŁÓDZKIE",
-    "accident_count": 30499,
+    "accident_count": 2306,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 28193,
       "1": 1308,
       "2": 825,
       "3": 173
     }
   },
   {
+    "filename": "collisions_2021_MAŁOPOLSKIE.geojson",
+    "year": 2021,
+    "voivodeship": "MAŁOPOLSKIE",
+    "accident_count": 31557,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 31557
+    }
+  },
+  {
     "filename": "accidents_2021_MAŁOPOLSKIE.geojson",
     "year": 2021,
     "voivodeship": "MAŁOPOLSKIE",
-    "accident_count": 33796,
+    "accident_count": 2239,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 31557,
       "1": 1314,
       "2": 787,
       "3": 138
     }
   },
   {
+    "filename": "collisions_2021_MAZOWIECKIE.geojson",
+    "year": 2021,
+    "voivodeship": "MAZOWIECKIE",
+    "accident_count": 63670,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 63670
+    }
+  },
+  {
     "filename": "accidents_2021_MAZOWIECKIE.geojson",
     "year": 2021,
     "voivodeship": "MAZOWIECKIE",
-    "accident_count": 66754,
+    "accident_count": 3084,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 63670,
       "1": 2165,
       "2": 574,
       "3": 345
     }
   },
   {
+    "filename": "collisions_2021_OPOLSKIE.geojson",
+    "year": 2021,
+    "voivodeship": "OPOLSKIE",
+    "accident_count": 10191,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 10191
+    }
+  },
+  {
     "filename": "accidents_2021_OPOLSKIE.geojson",
     "year": 2021,
     "voivodeship": "OPOLSKIE",
-    "accident_count": 10728,
+    "accident_count": 537,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 10191,
       "1": 300,
       "2": 158,
       "3": 79
     }
   },
   {
+    "filename": "collisions_2021_PODKARPACKIE.geojson",
+    "year": 2021,
+    "voivodeship": "PODKARPACKIE",
+    "accident_count": 17943,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 17943
+    }
+  },
+  {
     "filename": "accidents_2021_PODKARPACKIE.geojson",
     "year": 2021,
     "voivodeship": "PODKARPACKIE",
-    "accident_count": 19165,
+    "accident_count": 1222,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 17943,
       "1": 921,
       "2": 214,
       "3": 87
     }
   },
   {
+    "filename": "collisions_2021_PODLASKIE.geojson",
+    "year": 2021,
+    "voivodeship": "PODLASKIE",
+    "accident_count": 12744,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 12744
+    }
+  },
+  {
     "filename": "accidents_2021_PODLASKIE.geojson",
     "year": 2021,
     "voivodeship": "PODLASKIE",
-    "accident_count": 13177,
+    "accident_count": 433,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 12744,
       "2": 201,
       "1": 160,
       "3": 72
     }
   },
   {
+    "filename": "collisions_2021_POMORSKIE.geojson",
+    "year": 2021,
+    "voivodeship": "POMORSKIE",
+    "accident_count": 26551,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 26551
+    }
+  },
+  {
     "filename": "accidents_2021_POMORSKIE.geojson",
     "year": 2021,
     "voivodeship": "POMORSKIE",
-    "accident_count": 28325,
+    "accident_count": 1774,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 26551,
       "1": 1252,
       "2": 412,
       "3": 110
     }
   },
   {
+    "filename": "collisions_2021_ŚLĄSKIE.geojson",
+    "year": 2021,
+    "voivodeship": "ŚLĄSKIE",
+    "accident_count": 53739,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 53739
+    }
+  },
+  {
     "filename": "accidents_2021_ŚLĄSKIE.geojson",
     "year": 2021,
     "voivodeship": "ŚLĄSKIE",
-    "accident_count": 55942,
+    "accident_count": 2203,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 53739,
       "1": 1388,
       "2": 676,
       "3": 139
     }
   },
   {
+    "filename": "collisions_2021_ŚWIĘTOKRZYSKIE.geojson",
+    "year": 2021,
+    "voivodeship": "ŚWIĘTOKRZYSKIE",
+    "accident_count": 12430,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 12430
+    }
+  },
+  {
     "filename": "accidents_2021_ŚWIĘTOKRZYSKIE.geojson",
     "year": 2021,
     "voivodeship": "ŚWIĘTOKRZYSKIE",
-    "accident_count": 13210,
+    "accident_count": 780,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 12430,
       "1": 467,
       "2": 232,
       "3": 81
     }
   },
   {
+    "filename": "collisions_2021_WARMIŃSKO-MAZURSKIE.geojson",
+    "year": 2021,
+    "voivodeship": "WARMIŃSKO-MAZURSKIE",
+    "accident_count": 15507,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 15507
+    }
+  },
+  {
     "filename": "accidents_2021_WARMIŃSKO-MAZURSKIE.geojson",
     "year": 2021,
     "voivodeship": "WARMIŃSKO-MAZURSKIE",
-    "accident_count": 16427,
+    "accident_count": 920,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 15507,
       "1": 491,
       "2": 346,
       "3": 83
     }
   },
   {
+    "filename": "collisions_2021_WIELKOPOLSKIE.geojson",
+    "year": 2021,
+    "voivodeship": "WIELKOPOLSKIE",
+    "accident_count": 33672,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 33672
+    }
+  },
+  {
     "filename": "accidents_2021_WIELKOPOLSKIE.geojson",
     "year": 2021,
     "voivodeship": "WIELKOPOLSKIE",
-    "accident_count": 36081,
+    "accident_count": 2409,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 33672,
       "1": 1367,
       "2": 828,
       "3": 214
     }
   },
   {
+    "filename": "collisions_2021_ZACHODNIOPOMORSKIE.geojson",
+    "year": 2021,
+    "voivodeship": "ZACHODNIOPOMORSKIE",
+    "accident_count": 19165,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 19165
+    }
+  },
+  {
     "filename": "accidents_2021_ZACHODNIOPOMORSKIE.geojson",
     "year": 2021,
     "voivodeship": "ZACHODNIOPOMORSKIE",
-    "accident_count": 20106,
+    "accident_count": 941,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 19165,
       "1": 513,
       "2": 345,
       "3": 83
     }
   },
   {
+    "filename": "collisions_2022_DOLNOŚLĄSKIE.geojson",
+    "year": 2022,
+    "voivodeship": "DOLNOŚLĄSKIE",
+    "accident_count": 33700,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 33700
+    }
+  },
+  {
     "filename": "accidents_2022_DOLNOŚLĄSKIE.geojson",
     "year": 2022,
     "voivodeship": "DOLNOŚLĄSKIE",
-    "accident_count": 35568,
+    "accident_count": 1868,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 33700,
       "1": 1149,
       "2": 588,
       "3": 131
     }
   },
   {
+    "filename": "collisions_2022_KUJAWSKO-POMORSKIE.geojson",
+    "year": 2022,
+    "voivodeship": "KUJAWSKO-POMORSKIE",
+    "accident_count": 21668,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 21668
+    }
+  },
+  {
     "filename": "accidents_2022_KUJAWSKO-POMORSKIE.geojson",
     "year": 2022,
     "voivodeship": "KUJAWSKO-POMORSKIE",
-    "accident_count": 22437,
+    "accident_count": 769,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 21668,
       "1": 412,
       "2": 266,
       "3": 91
     }
   },
   {
+    "filename": "collisions_2022_LUBELSKIE.geojson",
+    "year": 2022,
+    "voivodeship": "LUBELSKIE",
+    "accident_count": 17132,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 17132
+    }
+  },
+  {
     "filename": "accidents_2022_LUBELSKIE.geojson",
     "year": 2022,
     "voivodeship": "LUBELSKIE",
-    "accident_count": 17917,
+    "accident_count": 785,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 17132,
       "1": 358,
       "2": 313,
       "3": 114
     }
   },
   {
+    "filename": "collisions_2022_LUBUSKIE.geojson",
+    "year": 2022,
+    "voivodeship": "LUBUSKIE",
+    "accident_count": 9857,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 9857
+    }
+  },
+  {
     "filename": "accidents_2022_LUBUSKIE.geojson",
     "year": 2022,
     "voivodeship": "LUBUSKIE",
-    "accident_count": 10355,
+    "accident_count": 498,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 9857,
       "1": 258,
       "2": 188,
       "3": 52
     }
   },
   {
+    "filename": "collisions_2022_ŁÓDZKIE.geojson",
+    "year": 2022,
+    "voivodeship": "ŁÓDZKIE",
+    "accident_count": 23221,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 23221
+    }
+  },
+  {
     "filename": "accidents_2022_ŁÓDZKIE.geojson",
     "year": 2022,
     "voivodeship": "ŁÓDZKIE",
-    "accident_count": 25430,
+    "accident_count": 2209,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 23221,
       "1": 1313,
       "2": 740,
       "3": 156
     }
   },
   {
+    "filename": "collisions_2022_MAŁOPOLSKIE.geojson",
+    "year": 2022,
+    "voivodeship": "MAŁOPOLSKIE",
+    "accident_count": 26765,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 26765
+    }
+  },
+  {
     "filename": "accidents_2022_MAŁOPOLSKIE.geojson",
     "year": 2022,
     "voivodeship": "MAŁOPOLSKIE",
-    "accident_count": 28991,
+    "accident_count": 2226,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 26765,
       "1": 1363,
       "2": 768,
       "3": 95
     }
   },
   {
+    "filename": "collisions_2022_MAZOWIECKIE.geojson",
+    "year": 2022,
+    "voivodeship": "MAZOWIECKIE",
+    "accident_count": 54846,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 54846
+    }
+  },
+  {
     "filename": "accidents_2022_MAZOWIECKIE.geojson",
     "year": 2022,
     "voivodeship": "MAZOWIECKIE",
-    "accident_count": 57742,
+    "accident_count": 2896,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 54846,
       "1": 2137,
       "2": 487,
       "3": 272
     }
   },
   {
+    "filename": "collisions_2022_OPOLSKIE.geojson",
+    "year": 2022,
+    "voivodeship": "OPOLSKIE",
+    "accident_count": 9275,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 9275
+    }
+  },
+  {
     "filename": "accidents_2022_OPOLSKIE.geojson",
     "year": 2022,
     "voivodeship": "OPOLSKIE",
-    "accident_count": 9713,
+    "accident_count": 438,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 9275,
       "1": 255,
       "2": 128,
       "3": 55
     }
   },
   {
+    "filename": "collisions_2022_PODKARPACKIE.geojson",
+    "year": 2022,
+    "voivodeship": "PODKARPACKIE",
+    "accident_count": 14763,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 14763
+    }
+  },
+  {
     "filename": "accidents_2022_PODKARPACKIE.geojson",
     "year": 2022,
     "voivodeship": "PODKARPACKIE",
-    "accident_count": 15825,
+    "accident_count": 1062,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 14763,
       "1": 779,
       "2": 198,
       "3": 85
     }
   },
   {
+    "filename": "collisions_2022_PODLASKIE.geojson",
+    "year": 2022,
+    "voivodeship": "PODLASKIE",
+    "accident_count": 11066,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 11066
+    }
+  },
+  {
     "filename": "accidents_2022_PODLASKIE.geojson",
     "year": 2022,
     "voivodeship": "PODLASKIE",
-    "accident_count": 11399,
+    "accident_count": 333,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 11066,
       "2": 149,
       "1": 121,
       "3": 63
     }
   },
   {
+    "filename": "collisions_2022_POMORSKIE.geojson",
+    "year": 2022,
+    "voivodeship": "POMORSKIE",
+    "accident_count": 22043,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 22043
+    }
+  },
+  {
     "filename": "accidents_2022_POMORSKIE.geojson",
     "year": 2022,
     "voivodeship": "POMORSKIE",
-    "accident_count": 23632,
+    "accident_count": 1589,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 22043,
       "1": 1116,
       "2": 383,
       "3": 90
     }
   },
   {
+    "filename": "collisions_2022_ŚLĄSKIE.geojson",
+    "year": 2022,
+    "voivodeship": "ŚLĄSKIE",
+    "accident_count": 47167,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 47167
+    }
+  },
+  {
     "filename": "accidents_2022_ŚLĄSKIE.geojson",
     "year": 2022,
     "voivodeship": "ŚLĄSKIE",
-    "accident_count": 49151,
+    "accident_count": 1984,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 47167,
       "1": 1219,
       "2": 616,
       "3": 149
     }
   },
   {
+    "filename": "collisions_2022_ŚWIĘTOKRZYSKIE.geojson",
+    "year": 2022,
+    "voivodeship": "ŚWIĘTOKRZYSKIE",
+    "accident_count": 10690,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 10690
+    }
+  },
+  {
     "filename": "accidents_2022_ŚWIĘTOKRZYSKIE.geojson",
     "year": 2022,
     "voivodeship": "ŚWIĘTOKRZYSKIE",
-    "accident_count": 11339,
+    "accident_count": 649,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 10690,
       "1": 379,
       "2": 205,
       "3": 65
     }
   },
   {
+    "filename": "collisions_2022_WARMIŃSKO-MAZURSKIE.geojson",
+    "year": 2022,
+    "voivodeship": "WARMIŃSKO-MAZURSKIE",
+    "accident_count": 13315,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 13315
+    }
+  },
+  {
     "filename": "accidents_2022_WARMIŃSKO-MAZURSKIE.geojson",
     "year": 2022,
     "voivodeship": "WARMIŃSKO-MAZURSKIE",
-    "accident_count": 14145,
+    "accident_count": 830,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 13315,
       "1": 417,
       "2": 338,
       "3": 75
     }
   },
   {
+    "filename": "collisions_2022_WIELKOPOLSKIE.geojson",
+    "year": 2022,
+    "voivodeship": "WIELKOPOLSKIE",
+    "accident_count": 29172,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 29172
+    }
+  },
+  {
     "filename": "accidents_2022_WIELKOPOLSKIE.geojson",
     "year": 2022,
     "voivodeship": "WIELKOPOLSKIE",
-    "accident_count": 31471,
+    "accident_count": 2299,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 29172,
       "1": 1287,
       "2": 816,
       "3": 196
     }
   },
   {
+    "filename": "collisions_2022_ZACHODNIOPOMORSKIE.geojson",
+    "year": 2022,
+    "voivodeship": "ZACHODNIOPOMORSKIE",
+    "accident_count": 16477,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 16477
+    }
+  },
+  {
     "filename": "accidents_2022_ZACHODNIOPOMORSKIE.geojson",
     "year": 2022,
     "voivodeship": "ZACHODNIOPOMORSKIE",
-    "accident_count": 17358,
+    "accident_count": 881,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 16477,
       "1": 515,
       "2": 295,
       "3": 71
     }
   },
   {
+    "filename": "collisions_2023_DOLNOŚLĄSKIE.geojson",
+    "year": 2023,
+    "voivodeship": "DOLNOŚLĄSKIE",
+    "accident_count": 33026,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 33026
+    }
+  },
+  {
     "filename": "accidents_2023_DOLNOŚLĄSKIE.geojson",
     "year": 2023,
     "voivodeship": "DOLNOŚLĄSKIE",
-    "accident_count": 34818,
+    "accident_count": 1792,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 33026,
       "2": 873,
       "1": 807,
       "3": 112
     }
   },
   {
+    "filename": "collisions_2023_KUJAWSKO-POMORSKIE.geojson",
+    "year": 2023,
+    "voivodeship": "KUJAWSKO-POMORSKIE",
+    "accident_count": 21477,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 21477
+    }
+  },
+  {
     "filename": "accidents_2023_KUJAWSKO-POMORSKIE.geojson",
     "year": 2023,
     "voivodeship": "KUJAWSKO-POMORSKIE",
-    "accident_count": 22261,
+    "accident_count": 784,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 21477,
       "1": 400,
       "2": 276,
       "3": 108
     }
   },
   {
+    "filename": "collisions_2023_LUBELSKIE.geojson",
+    "year": 2023,
+    "voivodeship": "LUBELSKIE",
+    "accident_count": 17084,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 17084
+    }
+  },
+  {
     "filename": "accidents_2023_LUBELSKIE.geojson",
     "year": 2023,
     "voivodeship": "LUBELSKIE",
-    "accident_count": 17878,
+    "accident_count": 794,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 17084,
       "1": 368,
       "2": 319,
       "3": 107
     }
   },
   {
+    "filename": "collisions_2023_LUBUSKIE.geojson",
+    "year": 2023,
+    "voivodeship": "LUBUSKIE",
+    "accident_count": 10021,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 10021
+    }
+  },
+  {
     "filename": "accidents_2023_LUBUSKIE.geojson",
     "year": 2023,
     "voivodeship": "LUBUSKIE",
-    "accident_count": 10463,
+    "accident_count": 442,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 10021,
       "1": 219,
       "2": 165,
       "3": 58
     }
   },
   {
+    "filename": "collisions_2023_ŁÓDZKIE.geojson",
+    "year": 2023,
+    "voivodeship": "ŁÓDZKIE",
+    "accident_count": 22832,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 22832
+    }
+  },
+  {
     "filename": "accidents_2023_ŁÓDZKIE.geojson",
     "year": 2023,
     "voivodeship": "ŁÓDZKIE",
-    "accident_count": 24959,
+    "accident_count": 2127,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 22832,
       "1": 1342,
       "2": 636,
       "3": 149
     }
   },
   {
+    "filename": "collisions_2023_MAŁOPOLSKIE.geojson",
+    "year": 2023,
+    "voivodeship": "MAŁOPOLSKIE",
+    "accident_count": 27323,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 27323
+    }
+  },
+  {
     "filename": "accidents_2023_MAŁOPOLSKIE.geojson",
     "year": 2023,
     "voivodeship": "MAŁOPOLSKIE",
-    "accident_count": 29533,
+    "accident_count": 2210,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 27323,
       "1": 1367,
       "2": 738,
       "3": 105
     }
   },
   {
+    "filename": "collisions_2023_MAZOWIECKIE.geojson",
+    "year": 2023,
+    "voivodeship": "MAZOWIECKIE",
+    "accident_count": 55639,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 55639
+    }
+  },
+  {
     "filename": "accidents_2023_MAZOWIECKIE.geojson",
     "year": 2023,
     "voivodeship": "MAZOWIECKIE",
-    "accident_count": 58433,
+    "accident_count": 2794,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 55639,
       "1": 2048,
       "2": 455,
       "3": 291
     }
   },
   {
+    "filename": "collisions_2023_OPOLSKIE.geojson",
+    "year": 2023,
+    "voivodeship": "OPOLSKIE",
+    "accident_count": 9032,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 9032
+    }
+  },
+  {
     "filename": "accidents_2023_OPOLSKIE.geojson",
     "year": 2023,
     "voivodeship": "OPOLSKIE",
-    "accident_count": 9496,
+    "accident_count": 464,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 9032,
       "1": 270,
       "2": 153,
       "3": 41
     }
   },
   {
+    "filename": "collisions_2023_PODKARPACKIE.geojson",
+    "year": 2023,
+    "voivodeship": "PODKARPACKIE",
+    "accident_count": 15206,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 15206
+    }
+  },
+  {
     "filename": "accidents_2023_PODKARPACKIE.geojson",
     "year": 2023,
     "voivodeship": "PODKARPACKIE",
-    "accident_count": 16400,
+    "accident_count": 1194,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 15206,
       "1": 907,
       "2": 201,
       "3": 86
     }
   },
   {
+    "filename": "collisions_2023_PODLASKIE.geojson",
+    "year": 2023,
+    "voivodeship": "PODLASKIE",
+    "accident_count": 10894,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 10894
+    }
+  },
+  {
     "filename": "accidents_2023_PODLASKIE.geojson",
     "year": 2023,
     "voivodeship": "PODLASKIE",
-    "accident_count": 11241,
+    "accident_count": 347,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 10894,
       "2": 161,
       "1": 119,
       "3": 67
     }
   },
   {
+    "filename": "collisions_2023_POMORSKIE.geojson",
+    "year": 2023,
+    "voivodeship": "POMORSKIE",
+    "accident_count": 22701,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 22701
+    }
+  },
+  {
     "filename": "accidents_2023_POMORSKIE.geojson",
     "year": 2023,
     "voivodeship": "POMORSKIE",
-    "accident_count": 24260,
+    "accident_count": 1559,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 22701,
       "1": 1110,
       "2": 357,
       "3": 92
     }
   },
   {
+    "filename": "collisions_2023_ŚLĄSKIE.geojson",
+    "year": 2023,
+    "voivodeship": "ŚLĄSKIE",
+    "accident_count": 49001,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 49001
+    }
+  },
+  {
     "filename": "accidents_2023_ŚLĄSKIE.geojson",
     "year": 2023,
     "voivodeship": "ŚLĄSKIE",
-    "accident_count": 50889,
+    "accident_count": 1888,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 49001,
       "1": 1183,
       "2": 588,
       "3": 117
     }
   },
   {
+    "filename": "collisions_2023_ŚWIĘTOKRZYSKIE.geojson",
+    "year": 2023,
+    "voivodeship": "ŚWIĘTOKRZYSKIE",
+    "accident_count": 10362,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 10362
+    }
+  },
+  {
     "filename": "accidents_2023_ŚWIĘTOKRZYSKIE.geojson",
     "year": 2023,
     "voivodeship": "ŚWIĘTOKRZYSKIE",
-    "accident_count": 11030,
+    "accident_count": 668,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 10362,
       "1": 385,
       "2": 212,
       "3": 71
     }
   },
   {
+    "filename": "collisions_2023_WARMIŃSKO-MAZURSKIE.geojson",
+    "year": 2023,
+    "voivodeship": "WARMIŃSKO-MAZURSKIE",
+    "accident_count": 13408,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 13408
+    }
+  },
+  {
     "filename": "accidents_2023_WARMIŃSKO-MAZURSKIE.geojson",
     "year": 2023,
     "voivodeship": "WARMIŃSKO-MAZURSKIE",
-    "accident_count": 14169,
+    "accident_count": 761,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 13408,
       "1": 353,
       "2": 337,
       "3": 71
     }
   },
   {
+    "filename": "collisions_2023_WIELKOPOLSKIE.geojson",
+    "year": 2023,
+    "voivodeship": "WIELKOPOLSKIE",
+    "accident_count": 29986,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 29986
+    }
+  },
+  {
     "filename": "accidents_2023_WIELKOPOLSKIE.geojson",
     "year": 2023,
     "voivodeship": "WIELKOPOLSKIE",
-    "accident_count": 32305,
+    "accident_count": 2319,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 29986,
       "1": 1338,
       "2": 807,
       "3": 174
     }
   },
   {
+    "filename": "collisions_2023_ZACHODNIOPOMORSKIE.geojson",
+    "year": 2023,
+    "voivodeship": "ZACHODNIOPOMORSKIE",
+    "accident_count": 16566,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 16566
+    }
+  },
+  {
     "filename": "accidents_2023_ZACHODNIOPOMORSKIE.geojson",
     "year": 2023,
     "voivodeship": "ZACHODNIOPOMORSKIE",
-    "accident_count": 17349,
+    "accident_count": 783,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 16566,
       "1": 451,
       "2": 249,
       "3": 83
     }
   },
   {
+    "filename": "collisions_2024_DOLNOŚLĄSKIE.geojson",
+    "year": 2024,
+    "voivodeship": "DOLNOŚLĄSKIE",
+    "accident_count": 34794,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 34794
+    }
+  },
+  {
     "filename": "accidents_2024_DOLNOŚLĄSKIE.geojson",
     "year": 2024,
     "voivodeship": "DOLNOŚLĄSKIE",
-    "accident_count": 36677,
+    "accident_count": 1883,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 34794,
       "1": 945,
       "2": 809,
       "3": 129
     }
   },
   {
+    "filename": "collisions_2024_KUJAWSKO-POMORSKIE.geojson",
+    "year": 2024,
+    "voivodeship": "KUJAWSKO-POMORSKIE",
+    "accident_count": 23555,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 23555
+    }
+  },
+  {
     "filename": "accidents_2024_KUJAWSKO-POMORSKIE.geojson",
     "year": 2024,
     "voivodeship": "KUJAWSKO-POMORSKIE",
-    "accident_count": 24343,
+    "accident_count": 788,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 23555,
       "1": 459,
       "2": 219,
       "3": 110
     }
   },
   {
+    "filename": "collisions_2024_LUBELSKIE.geojson",
+    "year": 2024,
+    "voivodeship": "LUBELSKIE",
+    "accident_count": 17526,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 17526
+    }
+  },
+  {
     "filename": "accidents_2024_LUBELSKIE.geojson",
     "year": 2024,
     "voivodeship": "LUBELSKIE",
-    "accident_count": 18371,
+    "accident_count": 845,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 17526,
       "1": 444,
       "2": 288,
       "3": 113
     }
   },
   {
+    "filename": "collisions_2024_LUBUSKIE.geojson",
+    "year": 2024,
+    "voivodeship": "LUBUSKIE",
+    "accident_count": 10688,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 10688
+    }
+  },
+  {
     "filename": "accidents_2024_LUBUSKIE.geojson",
     "year": 2024,
     "voivodeship": "LUBUSKIE",
-    "accident_count": 11150,
+    "accident_count": 462,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 10688,
       "1": 212,
       "2": 192,
       "3": 58
     }
   },
   {
+    "filename": "collisions_2024_ŁÓDZKIE.geojson",
+    "year": 2024,
+    "voivodeship": "ŁÓDZKIE",
+    "accident_count": 23950,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 23950
+    }
+  },
+  {
     "filename": "accidents_2024_ŁÓDZKIE.geojson",
     "year": 2024,
     "voivodeship": "ŁÓDZKIE",
-    "accident_count": 26184,
+    "accident_count": 2234,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 23950,
       "1": 1392,
       "2": 712,
       "3": 130
     }
   },
   {
+    "filename": "collisions_2024_MAŁOPOLSKIE.geojson",
+    "year": 2024,
+    "voivodeship": "MAŁOPOLSKIE",
+    "accident_count": 29154,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 29154
+    }
+  },
+  {
     "filename": "accidents_2024_MAŁOPOLSKIE.geojson",
     "year": 2024,
     "voivodeship": "MAŁOPOLSKIE",
-    "accident_count": 31628,
+    "accident_count": 2474,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 29154,
       "1": 1523,
       "2": 843,
       "3": 108
     }
   },
   {
+    "filename": "collisions_2024_MAZOWIECKIE.geojson",
+    "year": 2024,
+    "voivodeship": "MAZOWIECKIE",
+    "accident_count": 60320,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 60320
+    }
+  },
+  {
     "filename": "accidents_2024_MAZOWIECKIE.geojson",
     "year": 2024,
     "voivodeship": "MAZOWIECKIE",
-    "accident_count": 63186,
+    "accident_count": 2866,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 60320,
       "1": 2051,
       "2": 547,
       "3": 268
     }
   },
   {
+    "filename": "collisions_2024_OPOLSKIE.geojson",
+    "year": 2024,
+    "voivodeship": "OPOLSKIE",
+    "accident_count": 9763,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 9763
+    }
+  },
+  {
     "filename": "accidents_2024_OPOLSKIE.geojson",
     "year": 2024,
     "voivodeship": "OPOLSKIE",
-    "accident_count": 10257,
+    "accident_count": 494,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 9763,
       "1": 315,
       "2": 140,
       "3": 39
     }
   },
   {
+    "filename": "collisions_2024_PODKARPACKIE.geojson",
+    "year": 2024,
+    "voivodeship": "PODKARPACKIE",
+    "accident_count": 16136,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 16136
+    }
+  },
+  {
     "filename": "accidents_2024_PODKARPACKIE.geojson",
     "year": 2024,
     "voivodeship": "PODKARPACKIE",
-    "accident_count": 17151,
+    "accident_count": 1015,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 16136,
       "1": 754,
       "2": 164,
       "3": 97
     }
   },
   {
+    "filename": "collisions_2024_PODLASKIE.geojson",
+    "year": 2024,
+    "voivodeship": "PODLASKIE",
+    "accident_count": 11414,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 11414
+    }
+  },
+  {
     "filename": "accidents_2024_PODLASKIE.geojson",
     "year": 2024,
     "voivodeship": "PODLASKIE",
-    "accident_count": 11761,
+    "accident_count": 347,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 11414,
       "2": 173,
       "1": 122,
       "3": 52
     }
   },
   {
+    "filename": "collisions_2024_POMORSKIE.geojson",
+    "year": 2024,
+    "voivodeship": "POMORSKIE",
+    "accident_count": 25685,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 25685
+    }
+  },
+  {
     "filename": "accidents_2024_POMORSKIE.geojson",
     "year": 2024,
     "voivodeship": "POMORSKIE",
-    "accident_count": 27371,
+    "accident_count": 1686,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 25685,
       "1": 1151,
       "2": 430,
       "3": 105
     }
   },
   {
+    "filename": "collisions_2024_ŚLĄSKIE.geojson",
+    "year": 2024,
+    "voivodeship": "ŚLĄSKIE",
+    "accident_count": 51153,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 51153
+    }
+  },
+  {
     "filename": "accidents_2024_ŚLĄSKIE.geojson",
     "year": 2024,
     "voivodeship": "ŚLĄSKIE",
-    "accident_count": 52939,
+    "accident_count": 1786,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 51153,
       "1": 1106,
       "2": 568,
       "3": 112
     }
   },
   {
+    "filename": "collisions_2024_ŚWIĘTOKRZYSKIE.geojson",
+    "year": 2024,
+    "voivodeship": "ŚWIĘTOKRZYSKIE",
+    "accident_count": 11201,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 11201
+    }
+  },
+  {
     "filename": "accidents_2024_ŚWIĘTOKRZYSKIE.geojson",
     "year": 2024,
     "voivodeship": "ŚWIĘTOKRZYSKIE",
-    "accident_count": 11866,
+    "accident_count": 665,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 11201,
       "1": 384,
       "2": 219,
       "3": 62
     }
   },
   {
+    "filename": "collisions_2024_WARMIŃSKO-MAZURSKIE.geojson",
+    "year": 2024,
+    "voivodeship": "WARMIŃSKO-MAZURSKIE",
+    "accident_count": 14478,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 14478
+    }
+  },
+  {
     "filename": "accidents_2024_WARMIŃSKO-MAZURSKIE.geojson",
     "year": 2024,
     "voivodeship": "WARMIŃSKO-MAZURSKIE",
-    "accident_count": 15236,
+    "accident_count": 758,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 14478,
       "2": 382,
       "1": 307,
       "3": 69
     }
   },
   {
+    "filename": "collisions_2024_WIELKOPOLSKIE.geojson",
+    "year": 2024,
+    "voivodeship": "WIELKOPOLSKIE",
+    "accident_count": 33623,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 33623
+    }
+  },
+  {
     "filename": "accidents_2024_WIELKOPOLSKIE.geojson",
     "year": 2024,
     "voivodeship": "WIELKOPOLSKIE",
-    "accident_count": 36092,
+    "accident_count": 2469,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 33623,
       "1": 1382,
       "2": 894,
       "3": 193
     }
   },
   {
+    "filename": "collisions_2024_ZACHODNIOPOMORSKIE.geojson",
+    "year": 2024,
+    "voivodeship": "ZACHODNIOPOMORSKIE",
+    "accident_count": 17137,
+    "type": "collisions",
+    "severity_distribution": {
+      "0": 17137
+    }
+  },
+  {
     "filename": "accidents_2024_ZACHODNIOPOMORSKIE.geojson",
     "year": 2024,
     "voivodeship": "ZACHODNIOPOMORSKIE",
-    "accident_count": 17884,
+    "accident_count": 747,
+    "type": "accidents",
     "severity_distribution": {
-      "0": 17137,
       "1": 424,
       "2": 239,
       "3": 84
